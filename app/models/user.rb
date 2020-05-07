@@ -1,4 +1,4 @@
-class User < Activerecord:Base
+class User < ActiveRecord::Base
     has_many :games
-    has_many :turns, through :games
+    has_many :turns, through: :games
 end
