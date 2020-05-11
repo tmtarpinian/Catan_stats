@@ -6,6 +6,25 @@ class UsersController < ApplicationController
         erb :'users/index'
     end
 
+    get '/signup' do
+        if logged_in?
+            redirect "/users/#{@user.id}"
+        end
+            erb :'/sessions/signup'
+    end
+
+    post '/signup' do  
+       unless params[:name] == "" || params[:email] == ""
+        @user = User.new(params) 
+            if user.save
+            session[:user_id] = @user.id
+            redirect "/users/#{@user.id}"
+            end
+        end
+        redirect '/signup'
+    
+    end
+
     get '/users/:id' do         #show
         @user = User.find_by_id(params[:id])
         if !logged_in? 
@@ -14,23 +33,15 @@ class UsersController < ApplicationController
         erb :'/users/show'
     end
 
-    get '/users/new' do         #new
-       
-    end
-
-    post '/users' do             #create
+    get '/users/:id/edit' do         #edit
         
     end
 
-    get '/users/:id/edit' do
+    patch 'users/:id' do            #update
         
     end
 
-    patch 'users/:id' do
-        
-    end
-
-    delete '/users/:id' do
+    delete '/users/:id' do          #delete
     
     end
 
