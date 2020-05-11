@@ -9,7 +9,6 @@ use Rack::MethodOverride
 
 use UsersController
 use GamesController
-use TurnsController
 use SessionsController
 
 run ApplicationController

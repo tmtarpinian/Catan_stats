@@ -4,17 +4,17 @@ class SessionsController < ApplicationController
        end
    
        get '/login' do
-           if logged_in?
-               redirect '/users'
-           end
+           
            erb :'sessions/login'
        end
    
        post '/login' do
            @user = User.find_by(email: params[:email])
-           if user && user.authenticate(params[:password])
+           if @user
                session[:user_id] = @user.id 
+               binding.pry
                redirect "/users/#{@user.id}"
+               
            end
            redirect '/login'
        end
