@@ -26,18 +26,21 @@
 
 <h1> Here is a list of all Games <h1>
 <%@games.each do |game|%>
-<h2>  <a href="/game/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h2>
+<h2>  <a href="/games/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h2>
 
 <%end%> 
 
 <h1> Here are some Game Stats <h1>
 
-<h2>  Games Played:  <%=@games.count%>  </h2>
+<h2>  Total Games Played:  <%=@games.count%>  </h2>
 <h2>  Total Turns Played:  <%=@turns.count(:result)%>  </h2>
 
 
 <h2>  Average Turns in a Game:  Coming Soon! </h2>
-<h2>  Most Common Roll Result:  <%=@total = Turn.group(:result).order('count_id DESC').limit(1).count(:id)%><%=@total[:id]%>: <%=@total[:count_id]%>x </h2>
+
+<%x = Turn.all.group(:result).count%>
+
+<h2>  Most Common Roll Result: <%=x.sort_by{|k, v| -v}.first[0]%> (<%=x.sort_by{|k, v| -v}.first[1]%> out of <%=Turn.all.count%> rolls)</h2>
 
 
 

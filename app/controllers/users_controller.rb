@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    get '/users' do
+    get '/users' do                         ####DELETE THIS ACTION WHEN DONE WITH DEVELOPMENT
         @users = User.all
         @games = Game.all
         erb :'users/index'

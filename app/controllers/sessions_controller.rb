@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
            @user = User.find_by(email: params[:email])
            if @user
                session[:user_id] = @user.id 
-               binding.pry
                redirect "/users/#{@user.id}"
                
            end
@@ -22,7 +21,7 @@ class SessionsController < ApplicationController
        get '/logout' do
            if logged_in?
                session.clear
-               redirect '/login'
+               redirect '/'
            else
                redirect '/'
            end

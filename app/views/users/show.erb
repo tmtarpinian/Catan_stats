@@ -1,18 +1,28 @@
-<h1>TESTING PAGE HERE</h1>
-
 <h1>Hi <%=@user.name%>!
 
-<h2> Here is a list of all Games <h2>
+<h2> Here is a list of all Your Games <h2>
 <%@user.games.each do |game|%>
 
-<h3>  <a href="/game/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h3>
+<h3>  <a href="/games/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h3>
 
 <%end%> 
 
  <br><br>
+
+ <h2> Start a New Game Here:</h2>
+
+<a href="/games/new">Create New Game</a>
+ <br><br>
+
 <h2> To Edit your Profile:</h2>
 
 <a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+ <br><br>
+
+
+ <h2> Log out of Your Profile:</h2>
+
+<a href="/logout">Log Out</a>
  <br><br>
 
 

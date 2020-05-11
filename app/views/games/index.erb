@@ -1,0 +1,5 @@
+<h1> Here is a list of all Games <h1>
+<%@games.each do |game|%>
+<h2>  <a href="/game/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h2>
+
+<%end%> 
