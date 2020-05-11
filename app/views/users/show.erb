@@ -1,0 +1,8 @@
+<h1>TESTING PAGE HERE</h1>
+
+<h2> Here is a list of all Games <h2>
+<%@user.games.each do |game|%>
+
+<h3>  <a href="/game/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h3>
+
+<%end%> 

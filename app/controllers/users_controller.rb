@@ -7,7 +7,11 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do         #show
-        
+        @user = User.find_by_id(params[:id])
+        if !logged_in? 
+        redirect '/login'
+        end 
+        erb :'/users/show'
     end
 
     get '/users/new' do         #new
