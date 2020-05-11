@@ -29,19 +29,28 @@ class UsersController < ApplicationController
         if !logged_in? 
         redirect '/login'
         end 
-        erb :'/users/show'
+        erb :"/users/show"
     end
 
     get '/users/:id/edit' do         #edit
-        
+        @user = User.find_by_id(params[:id])
+        erb :"users/edit"
     end
 
-    patch 'users/:id' do            #update
-        
+    patch '/users/:id' do            #update
+        @user = User.find_by_id(params[:id])
+        if params[:name].empty? || params[:email].empty?
+            redirect "/users/#{@user.id}/edit"
+        else
+            @user.update(name: params[:name], email: params[:email])
+            redirect "/users/#{@user.id}"
+        end
     end
 
     delete '/users/:id' do          #delete
-    
+        @user = User.find_by_id(params[:id])
+        @user.destroy
+        redirect to '/'
     end
 
 end

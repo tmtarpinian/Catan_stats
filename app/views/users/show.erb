@@ -8,3 +8,19 @@
 <h3>  <a href="/game/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h3>
 
 <%end%> 
+
+ <br><br>
+<h2> To Edit your Profile:</h2>
+
+<a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+ <br><br>
+
+
+<h2> To Delete Your Profile:</h2>
+
+<form method="POST" action="/users/<%= @user.id %>">
+     <input type="hidden" name="_method" value="DELETE">
+ 	 <input type="submit" value="Delete User">
+</form>
+
+</body>
