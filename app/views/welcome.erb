@@ -26,7 +26,7 @@
 
 <h1> Here is a list of all Games <h1>
 <%@games.each do |game|%>
-<h2>  <a href="/games/<%=game.id%>">  <%=game.name%> Date: <%=game.gamedate%>  </a> </h2>
+<h2>  <a href="/games/<%=game.id%>">  <%=game.name%></a> (Date: <%=game.gamedate.strftime("%m-%d-%Y")%>) </h2>
 
 <%end%> 
 

@@ -12,16 +12,14 @@ class UsersController < ApplicationController
         
     end
 
-    post '/signup' do  
-       unless params[:name] == "" || params[:email] == "" || params[:password] == ""
-        @user = User.new(params) 
+    post '/signup' do
+        @user = User.new(params)
             if @user.save
-            session[:user_id] = @user.id
-            redirect "/users/#{@user.id}"
+                session[:user_id] = @user.id
+                redirect "/users/#{@user.id}"
+            else
+                redirect '/signup'
             end
-        end
-        redirect '/signup'
-    
     end
 
     get '/users/:id' do         #show

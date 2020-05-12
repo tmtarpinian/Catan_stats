@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20200507180519) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
-    t.datetime "gamedate", default: '2020-05-11 15:13:08'
+    t.datetime "gamedate", default: '2020-05-12 03:14:19'
     t.boolean  "complete", default: false
     t.integer  "user_id"
   end

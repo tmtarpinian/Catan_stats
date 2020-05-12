@@ -1,8 +1,14 @@
-What is the Title of Your New Game:
- <form action='/games' method="post">
+<h1>What is the Title of Your New Game?</h1>
 
-    <br>
-    <input type="text" name="name"><br>
-   <br>
+ <form method="POST" action='/games'>
+    <label>Game Title:</label> <br>
+    <select name="name">
+        <option>Catan</option>
+        <option>Monopoly</option>
+        <option>Shoots and Ladders</option>
+    </select>
+    <br><br>
+
+    
     <input type="submit" value="submit" id="submit">
   </form>
