@@ -1,33 +1,27 @@
 class GamesController < ApplicationController
-    
-    get '/games' do         #index
-        @games = Game.all
-        erb :"/games/index"
-    end
-
+ 
     get '/games/new' do         #new
-        @user = User.find_by_id(params[:id])
-        if !logged_in? 
-        redirect '/login'
+        if logged_in? 
+            erb :"/games/new"
+        else
+            redirect '/login'
         end 
-        erb :"/games/new"
     end
 
     get '/games/:id' do         #show
-        @user = User.find_by_id(params[:id])
-        @game = @user.games.find_by_id(params[:id])
-        
-        erb :"/games/show"
+        @game = current_user.games.find_by_id(params[:id])
+        if @game
+            erb :"/games/show"
+        else
+           redirect '/users'                   ######NEED A REDIRECT
+        end
     end
 
     post '/games' do         #create
-        unless params[:name] == ""
-            @game = Game.new(name: params[:name])
-            @game[:user_id] = session[:user_id]
-            @game.save  
-            redirect "/games/#{@game.id}"
-        end
-        redirect '/games/new'
+        @game = Game.new(name: params[:name])
+        @game[:user_id] = current_user.id
+        @game.save 
+        redirect "/games/#{@game.id}"
     end
 
     get '/games/:id/edit' do         #edit
@@ -41,6 +35,6 @@ class GamesController < ApplicationController
     delete '/games/:id' do          #delete
         @game = Game.find_by_id(params[:id])
         @game.destroy
-        redirect "/users/#{@user.id}"
+        redirect '/users/:id'                           ##Update this route to /users
     end
 end

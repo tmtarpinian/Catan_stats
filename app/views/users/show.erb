@@ -1,7 +1,7 @@
-<h1>Hi <%=@user.name%>!
+<h1>Hi <%=current_user.name%>!
 
 <h2> Here is a list of all Your Games <h2>
-<%@user.games.each do |game|%>
+<%current_user.games.each do |game|%>
 
 <h3>  <a href="/games/<%=game.id%>">  <%=game.name%> </a></h3> <h4>Start Date: <%=game.gamedate.strftime("%m-%d-%Y")%>   </h4>
 
@@ -16,7 +16,7 @@
 
 <h2> To Edit your Profile:</h2>
 
-<a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+<a href="/users/edit">Edit Profile</a>                       
  <br><br>
 
 
@@ -28,7 +28,7 @@
 
 <h2> To Delete Your Profile:</h2>
 
-<form method="POST" action="/users/<%= @user.id %>">
+<form method="POST" action="/users">                  
      <input type="hidden" name="_method" value="DELETE">
  	 <input type="submit" value="Delete User">
 </form>

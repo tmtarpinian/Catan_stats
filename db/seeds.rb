@@ -10,19 +10,12 @@ user5 = User.create(name: "EP", email: "ep@ep.com", password: "ep")
 
 user6 = User.create(name: "John", email: "john@john.com", password: "john")
 
-
 game1 = Game.create(name: "Catan", user_id: 1)
-
 game2 = Game.create(name: "Catan", user_id: 2)
-
 game3 = Game.create(name: "Catan", user_id: 3)
-
 game4 = Game.create(name: "Catan", user_id: 4)
-
 game5 = Game.create(name: "Catan", user_id: 1)
-
 game6 = Game.create(name: "Catan", user_id: 2)
-
 
 turn1 = Turn.create(result: 2, game_id: 1)
 turn2 = Turn.create(result: 3, game_id: 1)

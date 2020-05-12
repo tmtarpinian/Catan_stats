@@ -1,15 +1,35 @@
-<h1>  Game:  <%=@game.name%> </h1>
+<h1>  Game: <%=@game.name%> </h1>
 <br>
 <h2>Date: <%=@game.gamedate%>  </h2>
 
-
 <br>
-<h3>  <a href="/users/<%=@user.id%>">Back to your Homepage</a> </h3>
+<h3>  <a href="/users">Back to your Homepage</a> </h3>  
 <br>
 
-<%@game.turns.each do |turn|%>
+<br><br>
+
+ <h2> Enter Another Turn Result Here:</h2>
+
+<a href="/games/new">Create New Turn THIS BUTTON DOES NOT WORK YET</a>            <!--Change to turns/new-->
+ <br><br>
+
+
+<%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
 <h2>  Turn Number: <%=turn.id%> Roll Result: <%=turn.result%>  </h2>
 
 <%end%> 
+<br>
+<h2> Delete This Game:</h2>
 
+<form method="POST" action="/games/<%=@game.id %>">                 
+     <input type="hidden" name="_method" value="DELETE">
+ 	 <input type="submit" value="Delete Game">
+</form>
+
+
+
+
+<br>
+<h3>  <a href="/users">Back to your Homepage</a> </h3>  <!--NEED TO UPDATE TO current_user-->
+<br>
 

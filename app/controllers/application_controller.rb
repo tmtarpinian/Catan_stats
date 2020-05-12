@@ -5,13 +5,13 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-      enable :sessions
-      set :session_secret, 'password_security'
+    enable :sessions
+    set :session_secret, 'password_security'
     
   end
 
   get "/" do
-    @users = User.all
+    @users = User.all                   #Delete lines 14-16 after production
     @games = Game.all
     @turns = Turn.all
     erb :welcome
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:user_id])
+      @user ||= User.find_by_id(session[:user_id]) if logged_in?
     end
 
   end

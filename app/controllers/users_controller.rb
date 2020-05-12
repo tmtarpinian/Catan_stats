@@ -1,53 +1,56 @@
 class UsersController < ApplicationController
 
-    get '/users' do                         ####DELETE THIS ACTION WHEN DONE WITH DEVELOPMENT
-        @users = User.all
-        @games = Game.all
-        erb :'users/index'
-    end
-
     get '/signup' do
-        
-            erb :'users/signup'
-        
+        erb :'users/signup'
     end
 
     post '/signup' do
+        unless params[:name] == "" || params[:email] == "" || params[:password] == ""
         @user = User.new(params)
             if @user.save
                 session[:user_id] = @user.id
-                redirect "/users/#{@user.id}"
+                redirect "/users"
             else
                 redirect '/signup'
             end
+        end
+        redirect '/signup'
     end
 
-    get '/users/:id' do         #show
-        @user = User.find_by_id(params[:id])
-        if !logged_in? 
-        redirect '/login'
-        end 
-        erb :"/users/show"
-    end
-
-    get '/users/:id/edit' do         #edit
-        @user = User.find_by_id(params[:id])
-        erb :"users/edit"
-    end
-
-    patch '/users/:id' do            #update
-        @user = User.find_by_id(params[:id])
-        if params[:name].empty? || params[:email].empty?
-            redirect "/users/#{@user.id}/edit"
+    get '/users' do         #show
+        if logged_in? 
+            erb :"/users/show"
         else
-            @user.update(name: params[:name], email: params[:email])
-            redirect "/users/#{@user.id}"
+           redirect '/login'
+        end 
+    end
+
+    get '/users/edit' do         #edit              
+        if logged_in?
+            erb :"users/edit"
+        else
+            redirect '/login'
         end
     end
 
-    delete '/users/:id' do          #delete
-        @user = User.find_by_id(params[:id])
+    patch '/users' do            #update                    
+        if logged_in?
+            @user = current_user
+            if params[:name].empty? || params[:email].empty?
+                redirect "/users/edit"                      
+            else
+                @user.update(name: params[:name], email: params[:email])
+                redirect "/users"
+            end
+        else
+            redirect '/login'
+        end
+    end
+
+    delete '/users' do          #delete                    
+        @user = current_user
         @user.destroy
+        session.clear
         redirect to '/'
     end
 
