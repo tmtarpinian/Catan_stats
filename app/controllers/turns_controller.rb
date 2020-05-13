@@ -22,7 +22,6 @@ class TurnsController < ApplicationController
     end
         
     patch '/games/:game_id/turns/:id' do            #update
-        binding.pry
         @game = current_user.games.find_by_id(params[:game_id])
         @turn = @game.turns.find_by_id(params[:id])
         @turn.update(result: params[:result])
