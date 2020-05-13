@@ -21,8 +21,5 @@ class SessionsController < ApplicationController
         end
     end
 
-    get '/users/:id' do                              #####UPDATE THIS CONTROLLER ACTION
-        @user = User.find_by(params[:id])
-        erb :'/users/show'
-    end
+    
 end

@@ -15,19 +15,20 @@ class TurnsController < ApplicationController
         redirect "/games/#{@game.id}"
     end
 
-    get '/turns/:id/edit' do         #edit
-        binding.pry
-        @turn = current_user.games.turns.find_by_id(params[:id])
-        binding.pry
+    get '/games/:game_id/turns/:id/edit' do         #edit
+        @game = current_user.games.find_by_id(params[:game_id])
+        @turn = @game.turns.find_by_id(params[:id])
         erb :'turns/edit'
     end
 
-    patch '/turns/:id' do            #update
-        #@turn.update(result: params[:result])
-        #redirect '/users'                               ###NEED TO ROUTE BACK TO GAME ID PAGE
+    patch '/games/:game_id/turns/:id/' do            #update
+        binding.pry
+        @turn = Turn.find_by_id(params[:id])
+        @turn.update(result: params[:result])
+        redirect '/users'                               ###NEED TO ROUTE BACK TO GAME ID PAGE
     end
 
-    delete '/turns/:id' do          #delete
+    delete 'games/:game_id/turns/:id/' do          #delete
         #@turn = Turn.find_by_id(params[:id])
         #params
         #@turn.destroy

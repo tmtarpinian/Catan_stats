@@ -1,6 +1,14 @@
 <h1>Game: <%=@game.name%> </h1>
 <br>
-<h2>Start Date: <%=@game.gamedate.strftime("%m-%d-%Y")%><%=@game.gamedate.strftime(" at %I:%M%p")%>  </h2>
+<h2>Start Date: <%=@game.gamedate.strftime("%m-%d-%Y")%><%=@game.gamedate.strftime(" at %I:%M%p")%>
+<br>
+Game Status: <%if @game.complete == false%>
+            <%="Unfinished"%>
+            <% else %>
+            <%="Finished"  %>
+            <%end  %>
+            
+</h2>
 
 <br>
 <h3>  Total Turns Played This Game:  </h3>
@@ -43,9 +51,9 @@
 
 
 <%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
-
-<h2>  Turn Number: <%=turn.id%> Roll Result: <%=turn.result%> <a href="/turns/<%=turn.id%>/edit">Edit This Turn</a>     
-              
+<%@turn = turn%>
+<h2>  Turn Number: <%=@turn.id%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Turn</a> 
+                                                                     
  <br><br></h2>
 
 <%end%> 

@@ -1,8 +1,8 @@
 <h2> Edit Your Turn Result Here:</h2>
 
 
- <form method="POST" action='/turns/<%=@turn.id%>'>
-    <label>Roll/Spin Result:</label> <br>
+ <form method="POST" action='/games/<%=params[:game_id]%>/turns/<%=@turn.id%>'>
+   <!--put label here if visually needed--> 
     <select name="result">
         <option>1</option>
         <option>2</option>
