@@ -52,12 +52,11 @@ Game Status: <%if @game.complete == false%>
 
 <%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
 <%@turn = turn%>
-<h2>  Turn Number: <%=@turn.id%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Turn</a> 
+<h2>  Turn Number: <%=@turn.id%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
                                                                      
- <br><br>
  <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
      <input type="hidden" name="_method" value="DELETE">
- 	 <input type="submit" value="Delete This Turn">
+ 	 <input type="submit" value="Delete This Roll Result">
 </form>
 
  </h2>
