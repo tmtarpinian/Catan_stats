@@ -1,5 +1,8 @@
 <h1>Please Sign Up Below:</h1>
 
+<%= if @user.errors.full_messages%>
+
+
 <form action="/signup" method="POST">
 Name: <input type="text" name="name" placeholder="Name:"> 
 Email: <input type="text" name="email" placeholder="Email:">

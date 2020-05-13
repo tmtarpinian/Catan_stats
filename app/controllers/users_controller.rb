@@ -5,15 +5,16 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        unless params[:name] == "" || params[:email] == "" || params[:password] == ""
+        
+        #unless params[:name] == "" || params[:email] == "" || params[:password] == ""
         @user = User.new(params)
             if @user.save
                 session[:user_id] = @user.id
                 redirect "/users"
             else
-                redirect '/signup'
+                erb :'users/signup'
             end
-        end
+        #end
         redirect '/signup'                                                  ##needs to redirect signup if user logged_in
     end
 
