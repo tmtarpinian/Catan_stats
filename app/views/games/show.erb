@@ -54,7 +54,13 @@ Game Status: <%if @game.complete == false%>
 <%@turn = turn%>
 <h2>  Turn Number: <%=@turn.id%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Turn</a> 
                                                                      
- <br><br></h2>
+ <br><br>
+ <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
+     <input type="hidden" name="_method" value="DELETE">
+ 	 <input type="submit" value="Delete This Turn">
+</form>
+
+ </h2>
 
 <%end%> 
 <br>
