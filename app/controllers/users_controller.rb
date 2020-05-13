@@ -14,7 +14,7 @@ class UsersController < ApplicationController
                 redirect '/signup'
             end
         end
-        redirect '/signup'
+        redirect '/signup'                                                  ##needs to redirect signup if user logged_in
     end
 
     get '/users' do         #show
@@ -47,11 +47,15 @@ class UsersController < ApplicationController
         end
     end
 
-    delete '/users' do          #delete                    
-        @user = current_user
-        @user.destroy
-        session.clear
-        redirect to '/'
+    delete '/users' do          #delete   
+        if logged_in?                 
+            @user = current_user
+            @user.destroy
+            session.clear
+            redirect to '/'
+        else
+            redirect '/login'
+        end
     end
 
 end

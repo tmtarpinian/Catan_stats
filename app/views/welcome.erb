@@ -19,14 +19,14 @@
 
     <h2> Here is a test list of your users:</h2>
     <%@users.each do |user|%>
-    <h3>  <a href="/users/<%=user.id%>">  <%=user.name%>  </a> </h3>
+    <h3>   <%=user.name%>   </h3>
 
 <%end%> 
 
 
-<h1> Here is a list of all Games <h1>
+<h1> Recently Created Games <h1>
 <%@games.each do |game|%>
-<h2>  <a href="/games/<%=game.id%>">  <%=game.name%></a> (Date: <%=game.gamedate.strftime("%m-%d-%Y")%>) </h2>
+<h2>  <%=game.name%></a> (Date: <%=game.gamedate.strftime("%m-%d-%Y")%>) </h2>
 
 <%end%> 
 
