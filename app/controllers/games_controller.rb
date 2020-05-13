@@ -23,12 +23,11 @@ class GamesController < ApplicationController
 
     post '/games' do         #create
         if logged_in?
-            @game = Game.new(name: params[:name])
-            @game.build_user(id: current_user.id)
+            @game = current_user.games.build(name: params[:name])
             @game.save
             redirect "/games/#{@game.id}"
         else
-            redirect '/users'
+            redirect '/login'
         end
     end
 
@@ -41,8 +40,12 @@ class GamesController < ApplicationController
     end
 
     delete '/games/:id' do          #delete
-        @game = Game.find_by_id(params[:id])
-        @game.destroy
-        redirect '/users'                         
+        if logged_in?
+            @game = current_user.games.find_by_id(params[:id])
+            @game.destroy
+            redirect '/users'      
+        else
+            redirect '/login'
+        end                   
     end
 end
