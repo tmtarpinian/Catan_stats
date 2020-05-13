@@ -28,7 +28,7 @@ class GamesController < ApplicationController
             @game.save
             redirect "/games/#{@game.id}"
         else
-            redirect '/users' 
+            redirect '/users'
         end
     end
 

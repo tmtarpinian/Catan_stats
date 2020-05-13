@@ -3,11 +3,11 @@
 <h2>Start Date: <%=@game.gamedate.strftime("%m-%d-%Y")%><%=@game.gamedate.strftime(" at %I:%M%p")%>  </h2>
 
 <br>
-<h3>  Total Turns Played:  <%=@game.turns.count(:result)%>  </h3>
+<h3>  Total Turns Played This Game:  </h3>
 <br>
-<%x = @game.turns.all.group(:result).count%>
 
-<h3>  Most Common Roll Result: <%=x.sort_by{|k, v| -v}.first[0]%> (<%=x.sort_by{|k, v| -v}.first[1]%> times)</h3>
+
+<h3>  Most Common Roll This Game: 
 <br>
 
 <br>
@@ -43,7 +43,9 @@
 
 
 <%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
-<h2>  Turn Number: <%=turn.id%> Roll Result: <%=turn.result%> <a href="/turns/#{turn.id}/edit">Edit This Turn</a>                       
+
+<h2>  Turn Number: <%=turn.id%> Roll Result: <%=turn.result%> <a href="/turns/<%=turn.id%>/edit">Edit This Turn</a>     
+              
  <br><br></h2>
 
 <%end%> 
