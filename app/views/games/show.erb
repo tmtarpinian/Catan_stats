@@ -3,7 +3,7 @@
 <h2>Start Date: <%=@game.gamedate.strftime("%m-%d-%Y")%><%=@game.gamedate.strftime(" at %I:%M%p")%>
 <br>
 Game Status: <%if @game.complete == false%>
-            <%="Unfinished"%>
+            <%="In Progress"%>
             <% else %>
             <%="Finished"  %>
             <%end  %>
@@ -11,7 +11,7 @@ Game Status: <%if @game.complete == false%>
 </h2>
 
 <br>
-<h3>  Total Turns Played This Game:  </h3>
+<h3>  Total Turns Played This Game: <%= @length %> </h3>
 <br>
 
 
@@ -49,10 +49,11 @@ Game Status: <%if @game.complete == false%>
 
  <br><br>
 
-
+<%@counter = 1%>
 <%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
 <%@turn = turn%>
-<h2>  Turn Number: <%=@turn.id%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
+
+<h2>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
                                                                      
  <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
      <input type="hidden" name="_method" value="DELETE">
@@ -60,10 +61,10 @@ Game Status: <%if @game.complete == false%>
 </form>
 
  </h2>
-
+<%@counter +=1%>
 <%end%> 
 <br>
-<h2> Delete This Game:</h2>
+<h4> Delete This Game:</h4>
 
 <form method="POST" action="/games/<%=@game.id %>">                 
      <input type="hidden" name="_method" value="DELETE">

@@ -12,6 +12,7 @@ class GamesController < ApplicationController
         if logged_in? 
             @game = current_user.games.find_by_id(params[:id])
             if @game
+                @length = @game.turns.count
                 erb :"/games/show"
             else
             redirect '/users'                   

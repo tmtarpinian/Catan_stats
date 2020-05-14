@@ -1,6 +1,9 @@
 <h1>Hi <%=current_user.name%>!
 
-<h2> Here is a list of all Your Games <h2>
+
+<h2>Current Number of Games: <%=current_user.games.count  %></h2>
+
+
 <%current_user.games.each do |game|%>
 
 <h3>  <a href="/games/<%=game.id%>">  <%=game.name%> </a></h3> <h4>Start Date: <%=game.gamedate.strftime("%m-%d-%Y")%><%=game.gamedate.strftime(" at %I:%M%p")%>   </h4>
@@ -14,19 +17,19 @@
 <a href="/games/new">Create New Game</a>
  <br><br>
 
-<h2> To Edit your Profile:</h2>
+<h2>Edit your Profile:</h2>
 
 <a href="/users/edit">Edit Profile</a>                       
  <br><br>
 
 
- <h2> Log out of Your Profile:</h2>
+ <h4> Log out of Your Profile:</h4>
 
 <a href="/logout">Log Out</a>
  <br><br>
 
 
-<h2> To Delete Your Profile:</h2>
+<h5> To Delete Your Profile:</h5>
 
 <form method="POST" action="/users">                  
      <input type="hidden" name="_method" value="DELETE">
