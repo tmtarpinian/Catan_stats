@@ -2,11 +2,7 @@
 <br>
 <h2>Start Date: <%=@game.gamedate.strftime("%m-%d-%Y")%><%=@game.gamedate.strftime(" at %I:%M%p")%>
 <br>
-Game Status: <%if @game.complete == false%>
-            <%="In Progress"%>
-            <% else %>
-            <%="Finished"  %>
-            <%end  %>
+Game Status: <%=@game.status%>
 Change Status:
 <a href="/games/<%=@game.id%>/edit">Edit This Game's Status</a>                       
 </h2>

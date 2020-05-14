@@ -44,8 +44,8 @@ class GamesController < ApplicationController
     patch '/games/:id' do            #update
         if logged_in?
             binding.pry
-            @game = current_user.games.find_by_id(params[:game_id])
-            @game.update(result: params[:result])
+            @game = current_user.games.find_by_id(params[:id])
+            @game.update(status: params[:status])
             redirect "/games/#{@game.id}"
         else
             redirect '/login'
