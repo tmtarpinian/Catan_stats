@@ -7,7 +7,8 @@ Game Status: <%if @game.complete == false%>
             <% else %>
             <%="Finished"  %>
             <%end  %>
-            
+Change Status:
+<a href="/games/<%=@game.id%>/edit">Edit This Game's Status</a>                       
 </h2>
 
 <br>
