@@ -3,7 +3,7 @@ class CreateGames < ActiveRecord::Migration
     create_table :games do |t|
         t.string :name
         t.datetime :gamedate, default: Time.now
-        t.boolean :complete, default: false
+        t.string :status, default: "In progress"
         t.integer :user_id
     end
 end
