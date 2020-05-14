@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
     has_many :turns, through: :games
 
     validates :name, :email, :password, presence: true
+    validates :name, :email, uniqueness: true
 end
