@@ -13,11 +13,15 @@ class GamesController < ApplicationController
             @game = current_user.games.find_by_id(params[:id])
             if @game
                 @length = @game.turns.count
-                    # if @length >= 1
-                    #     @rolls = @game.turns.all.group(:result).count
-                    # else
-                    #     @rolls = 0
-                    # end
+                     if @length >= 1
+                         x = @game.turns.all.group(:result).count
+                         @top_roll = x.sort_by{|k, v| -v}.first[0]
+                         @times = x.sort_by{|k, v| -v}.first[1]
+                        
+                    else
+                       @top_roll = "No Data"
+                       @times = 0
+                     end
                 erb :"/games/show"
             else
             redirect '/users'                   
