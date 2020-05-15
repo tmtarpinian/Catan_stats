@@ -10,6 +10,7 @@ class UsersController < ApplicationController
                 session[:user_id] = @user.id
                 redirect "/users"
             else
+                binding.pry
                 erb :'users/signup'
             end
         redirect '/signup'                                                

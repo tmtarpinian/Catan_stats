@@ -7,22 +7,24 @@ Game Status: <%=@game.status%>
 <a href="/games/<%=@game.id%>/edit">Edit This Game's Status</a>                       
 </h2>
 
-<br>
-<h3>  Total Turns Played This Game: <%= @length %> </h3>
-<br>
 
-
-<h3>  Most Common Roll This Game: <%= @top_roll%> (result has occurred <%= @times %>x out of <%=@length%> turns)
-   
 <br>
-
+ <div class="sidebar">
+      <h3>Game Stats</h3>
+      <ul>
+        <li><b>Total Turns Played This Game:</b> <%= @length %></li>
+        <li><b>Most Common Roll This Game:</b> <%= @top_roll%></li>
+        <li><b>Occuring:</b> <%= @times %>x out of <%=@length%> turns</li>
+  
+      </ul>
+    </div>
 <br>
 <h3>  <a href="/users">Back to your Homepage</a> </h3>  
 <br>
 
 <br><br>
 
- <h2> Enter Your Turn Result Here:</h2>
+ <h2> Enter Your Next Turn Result Here:</h2>
 
  <form method="POST" action='/games/<%=@game.id%>/turns'>
     <label>Roll/Spin Result:</label> <br>
