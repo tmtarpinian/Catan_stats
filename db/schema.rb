@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20200507180519) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
-    t.datetime "gamedate", default: '2020-05-13 02:55:09'
-    t.boolean  "complete", default: false
+    t.datetime "gamedate", default: '2020-05-14 19:37:41'
+    t.string   "status",   default: "In Progress"
     t.integer  "user_id"
   end
 

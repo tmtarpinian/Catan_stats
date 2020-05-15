@@ -13,6 +13,11 @@ class GamesController < ApplicationController
             @game = current_user.games.find_by_id(params[:id])
             if @game
                 @length = @game.turns.count
+                    # if @length >= 1
+                    #     @rolls = @game.turns.all.group(:result).count
+                    # else
+                    #     @rolls = 0
+                    # end
                 erb :"/games/show"
             else
             redirect '/users'                   
@@ -43,7 +48,6 @@ class GamesController < ApplicationController
 
     patch '/games/:id' do            #update
         if logged_in?
-            binding.pry
             @game = current_user.games.find_by_id(params[:id])
             @game.update(status: params[:status])
             redirect "/games/#{@game.id}"
