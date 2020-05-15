@@ -12,6 +12,9 @@ class GamesController < ApplicationController
         if logged_in? 
             @game = current_user.games.find_by_id(params[:id])
             if @game
+                games = current_user.games.count
+                count = @game.turns.count
+                
                 @length = @game.turns.count
                      if @length >= 1
                          x = @game.turns.all.group(:result).count
