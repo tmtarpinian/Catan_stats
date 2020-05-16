@@ -48,7 +48,7 @@ class GamesController < ApplicationController
 
     post '/games' do         #create
         if logged_in?
-            @game = current_user.games.build(name: params[:name])
+            @game = current_user.games.build(name: params[:name], number_of_players: params[:players])
             @game.save
             redirect "/games/#{@game.id}"
         else
@@ -59,6 +59,7 @@ class GamesController < ApplicationController
     get '/games/:id/edit' do         #edit
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
+            binding.pry
             erb :'/games/edit'
         else
             redirect '/login'
