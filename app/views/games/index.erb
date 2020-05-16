@@ -20,7 +20,6 @@
 
 <%end%> 
 
-<a href="/games">See Your Games Here</a>
 
  <br><br>
 
@@ -29,23 +28,9 @@
 <a href="/games/new">Create New Game</a>
  <br><br>
 
-<h2>Edit your Profile:</h2>
-
-<a href="/users/edit">Edit Profile</a>                       
- <br><br>
+<h2><a href="/users">Back to your Dashboard</a></h2>                 <!--write "back to profile" and redirect to profile page.....or make this a nav option>-->
 
 
- <h4> Log out of Your Profile:</h4>
 
-<a href="/logout">Log Out</a>
- <br><br>
+ <h4><a href="/logout">Log out of Your Profile</a></h4>
 
-
-<h5> To Delete Your Profile:</h5>
-
-<form method="POST" action="/users">                  
-     <input type="hidden" name="_method" value="DELETE">
- 	 <input type="submit" value="Delete User">
-</form>
-
-</body>

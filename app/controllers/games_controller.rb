@@ -1,5 +1,18 @@
 class GamesController < ApplicationController
  
+    get '/games' do         #index
+        if logged_in?
+            titles = current_user.games.map {|g| g.name}
+            u = titles.uniq
+            @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
+            @frequency = titles.count{|x| x == @freq_game}
+            erb :"/games/index"
+        else
+            redirect '/login'
+        end 
+    end
+    
+    
     get '/games/new' do         #new
         if logged_in? 
             erb :"/games/new"
