@@ -3,12 +3,23 @@
 
 <h2>Current Number of Games: <%=current_user.games.count  %></h2>
 
-
+<br>
+ <div class="sidebar">
+      <h3>Game Stats</h3>
+      <ul>
+        <li><b>Game Most Played:</b><%=@freq_game%> (Played <%=@frequency%>x)</li>
+        <li><b>Most Common Roll This Game:</b> </li>
+        <li><b>Occuring:</b> <x out of turns</li>
+  
+      </ul>
+    </div>
+<br>
 <%current_user.games.each do |game|%>
 
 <h3>  <a href="/games/<%=game.id%>">  <%=game.name%> </a></h3> <h4>Start Date: <%=game.gamedate.strftime("%m-%d-%Y")%><%=game.gamedate.strftime(" at %I:%M%p")%> (<%=game.status%>)   </h4>
 
 <%end%> 
+
 
  <br><br>
 

@@ -14,7 +14,6 @@ class GamesController < ApplicationController
             if @game
                 games = current_user.games.count
                 count = @game.turns.count
-                
                 @length = @game.turns.count
                      if @length >= 1
                          x = @game.turns.all.group(:result).count
@@ -27,7 +26,7 @@ class GamesController < ApplicationController
                      end
                 erb :"/games/show"
             else
-            redirect '/users'                   
+                redirect '/users'                   
             end
         else
             redirect '/login'
