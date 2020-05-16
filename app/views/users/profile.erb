@@ -1,12 +1,11 @@
-<h1>Hi <%=current_user.name%>!
+<h1>Welcome to Your Dashboard <%=current_user.name%>!
 
-
-<h2>Current Number of Games: <%=current_user.games.count  %></h2>
 
 <br>
  <div class="sidebar">
-      <h3>Game Stats</h3>
+      <h2>Game Stats</h2>
       <ul>
+        <li><b>Games Played:</b><%=current_user.games.count  %></li>
         <li><b>Game Most Played: </b><%=@freq_game%> (Played <%=@frequency%>x)</li>
         <li><b>Most Common Roll This Game:</b> </li>
         <li><b>Occuring:</b> <x out of turns</li>
@@ -20,22 +19,22 @@
 
 <%end%> 
 
-<a href="/games">See Your Games Here</a>
+<h2><a href="/games">See Your Games Here</a></h2>
 
  <br><br>
 
- <h2> Start a New Game Here:</h2>
+ <h2>Look at Your Most Recent Game</h2>
+ <%=current_user.games.last%>
 
-<a href="/games/new">Create New Game</a>
+
+<h2><a href="/games/new">Start a New Game Here</a></h2>
  <br><br>
 
-<h2>Edit your Profile:</h2>
-
-<a href="/users/edit">Edit Profile</a>                       
+<h2><a href="/users/edit">Edit Your Profile</a></h2>                       
  <br><br>
 
 
- <h4> Log out of Your Profile:</h4>
 
-<a href="/logout">Log Out</a>
+
+<h4><a href="/logout">Log out of Your Profile</a></h4>
  <br><br>

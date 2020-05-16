@@ -8,21 +8,21 @@ class UsersController < ApplicationController
         @user = User.new(params)
             if @user.save
                 session[:user_id] = @user.id
-                redirect "/users"
+                redirect "/profile"                    #CHANGE TO PROFILE
             else
                 erb :'users/signup'
             end                                            
     end
 
-    get '/users' do         #show                               #CHANGE TO PROFILE
+    get '/profile' do         #show                               #CHANGE TO PROFILE
         if logged_in?
             titles = current_user.games.map {|g| g.name}
             u = titles.uniq
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
-            erb :"/users/show"
+            erb :"users/profile"
         else
-           redirect '/login'                                #CHANGE ROUTE TO PROFILE
+           redirect '/login'                               
         end 
     end
 
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
                 redirect "/users/edit"                      
             else
                 @user.update(name: params[:name], email: params[:email])
-                redirect "/users"
+                redirect "/profile"                            #CHANGE TO PROFILE
             end
         else
             redirect '/login'

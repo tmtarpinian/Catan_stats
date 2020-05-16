@@ -39,7 +39,7 @@ class GamesController < ApplicationController
                      end
                 erb :"/games/show"
             else
-                redirect '/users'                   
+                redirect '/profile'                                    #CHANGE TO PROFILE
             end
         else
             redirect '/login'
@@ -80,7 +80,7 @@ class GamesController < ApplicationController
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
             @game.destroy
-            redirect '/users'      
+            redirect '/games'      
         else
             redirect '/login'
         end                   

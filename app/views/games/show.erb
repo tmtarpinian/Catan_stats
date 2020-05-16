@@ -50,7 +50,7 @@ Game Status: <%=@game.status%>
  <br><br>
 
 <%@counter = 1%>
-<%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
+<%@game.turns.each do |turn|%>                                         
 <%@turn = turn%>
 
 <h3>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
@@ -78,7 +78,5 @@ Game Status: <%=@game.status%>
 <h2>  <a href="/games">Back to Your Games</a> </h2>
 <br>
 
- <h4> Log out of Your Profile:</h4>
-
-<a href="/logout">Log Out</a>
- <br><br>
+<h4><a href="/logout">Log out of Your Profile</a></h4>
+ 

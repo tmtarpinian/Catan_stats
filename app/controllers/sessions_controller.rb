@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: params[:email])                     #could validate this further with logged_in?
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id 
-            redirect "/users"
+            redirect '/profile'                                    #CHANGE TO PROFILE
         end
         redirect '/login'
     end
