@@ -14,28 +14,15 @@ class UsersController < ApplicationController
             end                                            
     end
 
-    get '/users' do         #show
+    get '/users' do         #show                               #CHANGE TO PROFILE
         if logged_in?
-           
             titles = current_user.games.map {|g| g.name}
             u = titles.uniq
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
-            # count = @game.turns.count
-            
-            # @length = @game.turns.count
-            #      if @length >= 1
-            #          x = @game.turns.all.group(:result).count
-            #          @top_roll = x.sort_by{|k, v| -v}.first[0]
-            #          @times = x.sort_by{|k, v| -v}.first[1]
-                    
-            #     else
-            #        @top_roll = "No Data"
-            #        @times = 0
-            #     end
             erb :"/users/show"
         else
-           redirect '/login'
+           redirect '/login'                                #CHANGE ROUTE TO PROFILE
         end 
     end
 

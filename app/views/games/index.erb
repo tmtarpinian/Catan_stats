@@ -1,19 +1,16 @@
-<h1>Hi <%=current_user.name%>!
-
-
-<h2>Current Number of Games: <%=current_user.games.count  %></h2>
+<h1><%=current_user.name%>'s Games</h1>
 
 <br>
  <div class="sidebar">
-      <h3>Game Stats</h3>
+      <h2>Game Stats</h2>
       <ul>
+        <li><b>Number of Games Created:</b><%=current_user.games.count%></li>
         <li><b>Game Most Played: </b><%=@freq_game%> (Played <%=@frequency%>x)</li>
         <li><b>Most Common Roll This Game:</b> </li>
-        <li><b>Occuring:</b> <x out of turns</li>
-  
       </ul>
     </div>
 <br>
+<h2>Game List</h2>
 <%current_user.games.each do |game|%>
 
 <h3>  <a href="/games/<%=game.id%>">  <%=game.name%> </a></h3> <h4>Start Date: <%=game.gamedate.strftime("%m-%d-%Y")%><%=game.gamedate.strftime(" at %I:%M%p")%> (<%=game.status%>)   </h4>
@@ -23,9 +20,7 @@
 
  <br><br>
 
- <h2> Start a New Game Here:</h2>
-
-<a href="/games/new">Create New Game</a>
+ <h2><a href="/games/new">Start a New Game Here</a></h2>
  <br><br>
 
 <h2><a href="/users">Back to your Dashboard</a></h2>                 <!--write "back to profile" and redirect to profile page.....or make this a nav option>-->

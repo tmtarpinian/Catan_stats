@@ -20,41 +20,7 @@
 
 <%end%> 
 
-
-<h1> Recently Created Games <h1>
-<%@games.each do |game|%>
-<h2>  <%=game.name%></a> (Date: <%=game.gamedate.strftime("%m-%d-%Y")%>) </h2>
-
-<%end%> 
-
-<h1> Here are some Game Stats <h1>
-
-<h2>  Total Games Played:  <%=@games.count%>  </h2>
-<h2>  Total Turns Played:  <%=@turns.count(:result)%>  </h2>
-
-
-<h2>  Average Turns in a Game:  Coming Soon! </h2>
-
-<%x = Turn.all.group(:result).count%>
-
-<h2>  Most Common Roll Result: <%=x.sort_by{|k, v| -v}.first[0]%> (<%=x.sort_by{|k, v| -v}.first[1]%> out of <%=Turn.all.count%> rolls)</h2>
-
-
-
-<%@games.each do |game|%>
-<%end%> 
-
     </div>
-
-    <!--<div class="sidebar">
-      <h3>Environment</h3>
-      <ul>
-        <li><b>Ruby:</b> <%= RUBY_VERSION %></li>
-        <li><b>Environment:</b> <%= ENV["RACK_ENV"] %></li>
-        <li><b>Server:</b> <%= @env["SERVER_SOFTWARE"] %></li>
-        <li><b>Port:</b> <%= @env["SERVER_PORT"] %></li>
-      </ul>
-    </div>-->
 
   </div>
 </div>

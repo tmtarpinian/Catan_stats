@@ -10,16 +10,16 @@ Game Status: <%=@game.status%>
 
 <br>
  <div class="sidebar">
-      <h3>Game Stats</h3>
+      <h2>Game Stats</h2>
       <ul>
         <li><b>Total Turns Played This Game:</b> <%= @length %></li>
         <li><b>Most Common Roll This Game:</b> <%= @top_roll%></li>
-        <li><b>Occuring:</b> <%= @times %>x out of <%=@length%> turns</li>
+        <li><b>Occuring:</b> <%= @times %> out of <%=@length%> turns</li>
   
       </ul>
     </div>
 <br>
-<h3>  <a href="/users">Back to your Homepage</a> </h3>  
+<h2>  <a href="/games">Back to Your Games</a> </h2>
 <br>
 
 <br><br>
@@ -53,18 +53,18 @@ Game Status: <%=@game.status%>
 <%@game.turns.each do |turn|%>                                          <!--NEED TO Correct Turn Number-->
 <%@turn = turn%>
 
-<h2>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
+<h3>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
                                                                      
  <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
      <input type="hidden" name="_method" value="DELETE">
  	 <input type="submit" value="Delete This Roll Result">
 </form>
 
- </h2>
+ </h3>
 <%@counter +=1%>
 <%end%> 
 <br>
-<h4> Delete This Game:</h4>
+<h2> Delete This Game:</h2>
 
 <form method="POST" action="/games/<%=@game.id %>">                 
      <input type="hidden" name="_method" value="DELETE">
@@ -75,7 +75,7 @@ Game Status: <%=@game.status%>
 
 
 <br>
-<h3>  <a href="/users">Back to your Homepage</a> </h3>
+<h2>  <a href="/games">Back to Your Games</a> </h2>
 <br>
 
  <h4> Log out of Your Profile:</h4>
