@@ -6,77 +6,71 @@ Game Status: <%=@game.status%>
 <br>
 <a href="/games/<%=@game.id%>/edit">Edit This Game's Status</a>                       
 </h2>
-
-
 <br>
- <div class="sidebar">
-      <h2>Game Stats</h2>
-      <ul>
-        <li><b>Total Turns Played This Game:</b> <%= @length %></li>
-        <li><b>Most Common Roll This Game:</b> <%= @top_roll%></li>
-        <li><b>Occuring:</b> <%= @times %> out of <%=@length%> turns</li>
-  
-      </ul>
-    </div>
+<div class="sidebar">
+<h2>Game Stats</h2>
+  <ul>
+    <li><b>Total Turns Played This Game:</b> <%= @length %></li>
+    <li><b>Most Common Roll This Game:</b> <%= @top_roll%></li>
+    <li><b>Occuring:</b> <%= @times %> out of <%=@length%> turns (<%=@percentage%>%)</li>
+  </ul>
+</div>
 <br>
 <h2>  <a href="/games">Back to Your Games</a> </h2>
 <br>
-
-<br><br>
-
- <h2> Enter Your Next Turn Result Here:</h2>
-
+<br>
+<br>
+<h2> Enter Your Next Turn Result Here:</h2>
  <form method="POST" action='/games/<%=@game.id%>/turns'>
     <label>Roll/Spin Result:</label> <br>
     <select name="result">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option>11</option>
-        <option>12</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
     </select>
-    <br><br>
-
+    <br>
+    <br>
     <input type="submit" value="submit" id="submit">
   </form>
+ <br>
+ <br>
 
- <br><br>
+
+
 
 <%@counter = 1%>
 <%@game.turns.each do |turn|%>                                         
 <%@turn = turn%>
-
-<h3>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a> 
-                                                                     
+<h3>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a>                                                         
  <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
-     <input type="hidden" name="_method" value="DELETE">
- 	 <input type="submit" value="Delete This Roll Result">
-</form>
-
- </h3>
+    <input type="hidden" name="_method" value="DELETE">
+ 	  <input type="submit" value="Delete This Roll Result">
+  </form>
+</h3>
 <%@counter +=1%>
 <%end%> 
 <br>
+
+
+
+
+
 <h2> Delete This Game:</h2>
-
 <form method="POST" action="/games/<%=@game.id %>">                 
-     <input type="hidden" name="_method" value="DELETE">
- 	 <input type="submit" value="Delete Game">
+  <input type="hidden" name="_method" value="DELETE">
+ 	<input type="submit" value="Delete Game">
 </form>
-
-
-
-
 <br>
-<h2>  <a href="/games">Back to Your Games</a> </h2>
+<h2><a href="/games">Back to Your Games</a></h2>
 <br>
-
 <h4><a href="/logout">Log out of Your Profile</a></h4>
  

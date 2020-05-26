@@ -4,10 +4,10 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do
-        @user = User.find_by(email: params[:email])                     #could validate this further with logged_in?
+        @user = User.find_by(email: params[:email])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id 
-            redirect '/profile'                                    #CHANGE TO PROFILE
+            redirect '/profile'
         end
         redirect '/login'
     end
@@ -20,6 +20,5 @@ class SessionsController < ApplicationController
             redirect '/'
         end
     end
-
     
 end

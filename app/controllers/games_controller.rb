@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
  
-    get '/games' do         #index
+    get '/games' do
         if logged_in?
             titles = current_user.games.map {|g| g.name}
             u = titles.uniq
@@ -12,8 +12,7 @@ class GamesController < ApplicationController
         end 
     end
     
-    
-    get '/games/new' do         #new
+    get '/games/new' do
         if logged_in? 
             erb :"/games/new"
         else
@@ -21,7 +20,7 @@ class GamesController < ApplicationController
         end 
     end
 
-    get '/games/:id' do         #show
+    get '/games/:id' do
         if logged_in? 
             @game = current_user.games.find_by_id(params[:id])
             if @game
@@ -32,21 +31,22 @@ class GamesController < ApplicationController
                          x = @game.turns.all.group(:result).count
                          @top_roll = x.sort_by{|k, v| -v}.first[0]
                          @times = x.sort_by{|k, v| -v}.first[1]
-                        
                     else
                        @top_roll = "No Data"
                        @times = 0
                      end
+                @percentage = ((@times.to_f/@length)*100).floor(1)
+            
                 erb :"/games/show"
             else
-                redirect '/profile'                                    #CHANGE TO PROFILE
+                redirect '/profile'                                   
             end
         else
             redirect '/login'
         end 
     end
 
-    post '/games' do         #create
+    post '/games' do
         if logged_in?
             @game = current_user.games.build(name: params[:name], number_of_players: params[:players])
             @game.save
@@ -59,7 +59,6 @@ class GamesController < ApplicationController
     get '/games/:id/edit' do         #edit
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
-            binding.pry
             erb :'/games/edit'
         else
             redirect '/login'
@@ -76,7 +75,7 @@ class GamesController < ApplicationController
         end 
     end
 
-    delete '/games/:id' do          #delete
+    delete '/games/:id' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
             @game.destroy

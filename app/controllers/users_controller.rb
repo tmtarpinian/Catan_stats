@@ -8,13 +8,13 @@ class UsersController < ApplicationController
         @user = User.new(params)
             if @user.save
                 session[:user_id] = @user.id
-                redirect "/profile"                    #CHANGE TO PROFILE
+                redirect "/profile"
             else
                 erb :'users/signup'
             end                                            
     end
 
-    get '/profile' do         #show                               #CHANGE TO PROFILE
+    get '/profile' do
         if logged_in?
             titles = current_user.games.map {|g| g.name}
             u = titles.uniq
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         end 
     end
 
-    get '/users/edit' do         #edit              
+    get '/users/edit' do           
         if logged_in?
             erb :"users/edit"
         else
@@ -34,21 +34,21 @@ class UsersController < ApplicationController
         end
     end
 
-    patch '/users' do            #update                    
+    patch '/users' do          
         if logged_in?
             @user = current_user
             if params[:name].empty? || params[:email].empty?
                 redirect "/users/edit"                      
             else
                 @user.update(name: params[:name], email: params[:email])
-                redirect "/profile"                            #CHANGE TO PROFILE
+                redirect "/profile"
             end
         else
             redirect '/login'
         end
     end
 
-    delete '/users' do          #delete   
+    delete '/users' do
         if logged_in?                 
             @user = current_user
             @user.destroy

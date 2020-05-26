@@ -1,6 +1,6 @@
 class TurnsController < ApplicationController
 
-    post '/games/:id/turns' do         #create
+    post '/games/:id/turns' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
             @turn = @game.turns.build(result: params[:result])   
@@ -11,7 +11,7 @@ class TurnsController < ApplicationController
         end
     end
 
-    get '/games/:game_id/turns/:id/edit' do         #edit
+    get '/games/:game_id/turns/:id/edit' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:game_id])
             @turn = @game.turns.find_by_id(params[:id])
@@ -21,7 +21,7 @@ class TurnsController < ApplicationController
         end
     end
         
-    patch '/games/:game_id/turns/:id' do            #update
+    patch '/games/:game_id/turns/:id' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:game_id])
             @turn = @game.turns.find_by_id(params[:id])
@@ -32,7 +32,7 @@ class TurnsController < ApplicationController
         end                       
     end
 
-    delete '/games/:game_id/turns/:id' do          #delete
+    delete '/games/:game_id/turns/:id' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:game_id])
             @turn = @game.turns.find_by_id(params[:id])
