@@ -20,6 +20,7 @@ class UsersController < ApplicationController
             u = titles.uniq
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
+            
             erb :"users/profile"
         else
            redirect '/login'                               

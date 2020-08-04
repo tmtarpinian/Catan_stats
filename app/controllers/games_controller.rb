@@ -28,15 +28,16 @@ class GamesController < ApplicationController
                 count = @game.turns.count
                 @length = @game.turns.count
                      if @length >= 1
-                         x = @game.turns.all.group(:result).count
-                         @top_roll = x.sort_by{|k, v| -v}.first[0]
-                         @times = x.sort_by{|k, v| -v}.first[1]
+                        x = @game.turns.all.group(:result).count
+                        @top_roll = x.sort_by{|k, v| -v}.first[0]
+                        
+                        @times = x.sort_by{|k, v| -v}.first[1]
+                        @percentage = ((@times.to_f/@length)*100).floor(1)
                     else
-                       @top_roll = "No Data"
-                       @times = 0
+                        @top_roll = "No Data"
+                        @times = 0
+                        @percentage = 0
                      end
-                @percentage = ((@times.to_f/@length)*100).floor(1)
-            
                 erb :"/games/show"
             else
                 redirect '/profile'                                   
@@ -46,7 +47,7 @@ class GamesController < ApplicationController
         end 
     end
 
-    post '/games' do
+    post '/games' do            #create
         if logged_in?
             @game = current_user.games.build(name: params[:name], number_of_players: params[:players])
             @game.save
@@ -56,16 +57,20 @@ class GamesController < ApplicationController
         end
     end
 
-    get '/games/:id/edit' do         #edit
+    get '/games/:id/edit' do         
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
-            erb :'/games/edit'
+                if @game
+                    erb :'/games/edit'
+                else
+                    redirect '/games'
+                end
         else
             redirect '/login'
         end  
     end
 
-    patch '/games/:id' do            #update
+    patch '/games/:id' do           
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
             @game.update(status: params[:status])
@@ -83,5 +88,11 @@ class GamesController < ApplicationController
         else
             redirect '/login'
         end                   
+    end
+
+    private
+
+    def valid_game      
+        # refractor the @game code from 63-66 and use in other methods
     end
 end
