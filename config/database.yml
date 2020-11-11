@@ -10,14 +10,11 @@ test:
   pool: 5
   timeout: 5000
 
-  production:
+production:
   adapter: postgresql
-  encoding: utf8
   database: catan
   pool: 5
-  username:
-  password:
-  timeout: 5000
+
 
   #---------------Uncomment Below Code if Postgresql DB desired for testing and development------#
 
