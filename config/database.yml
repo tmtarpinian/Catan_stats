@@ -1,0 +1,21 @@
+development:
+  adapter: sqlite3
+  database: development
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: catan
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: user
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  #host: <%= ENV['DATABASE_HOST'] %>
