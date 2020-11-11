@@ -12,7 +12,7 @@ test:
 
   production:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   database: catan
   pool: 5
   username:
