@@ -7,22 +7,19 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'bcrypt'
+gem 'sqlite3', '~> 1.3.6'
+gem 'pry'
+gem 'tux'
+gem 'shotgun'
 
 
 group :test do
-  gem 'sqlite3'
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
 
-group :development do
-  gem 'sqlite3'
-  gem 'pry'
-  gem 'tux'
-  gem 'shotgun'
-end
 
 group :production do
  gem 'pg'

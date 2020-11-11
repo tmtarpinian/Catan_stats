@@ -1,12 +1,12 @@
 development:
   adapter: sqlite3
-  database: development
+  database: 'db/development.sqlite'
   pool: 5
   timeout: 5000
 
 test:
   adapter: sqlite3
-  database: test
+  database: 'db/test.sqlite'
   pool: 5
   timeout: 5000
 
@@ -16,6 +16,6 @@ production:
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: user
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  #username: user
+  #password: <%= ENV['DATABASE_PASSWORD'] %>
   #host: <%= ENV['DATABASE_HOST'] %>
