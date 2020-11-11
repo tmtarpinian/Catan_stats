@@ -1,22 +1,48 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
 development:
   adapter: sqlite3
-  database: 'db/development.sqlite'
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
 test:
   adapter: sqlite3
-  database: 'db/test.sqlite'
+  database: db/test.sqlite3
   pool: 5
   timeout: 5000
 
-production:
-  <<: *default
+  production:
+  adapter: postgresql
+  encoding: unicode
   database: catan
+  pool: 5
+  username:
+  password:
+  timeout: 5000
+
+  #---------------Uncomment Below Code if Postgresql DB desired for testing and development------#
+
+  # development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: catan_development
+#   pool: 5
+#   username:
+#   password:
+#   timeout: 5000
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: catan_test
+#   pool: 5
+#   username:
+#   password:
+#   timeout: 5000
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: catan
+#   pool: 5
+#   username:
+#   password:
+#   timeout: 5000

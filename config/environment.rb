@@ -1,6 +1,7 @@
 require 'bundler/setup'
 Bundler.require
 
+ #---------------Comment Below Code if Postgresql DB desired for testing and development------#
 configure :test do
   ENV['SINATRA_ENV'] ||= "test"
 
@@ -22,6 +23,9 @@ configure :development do
   )
 end
 
+ #---------------Comment Above Code if Postgresql DB desired for testing and development------#
+ #---------------first line of configure below show then read:-----------#
+ #---------------configure :production, :development, :test do   --------#
 configure :production do
 	db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/catan')
 

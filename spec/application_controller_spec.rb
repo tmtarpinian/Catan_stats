@@ -5,9 +5,12 @@ def app
 end
 
 describe ApplicationController do
-  it "responds with a welcome message" do
-    get '/'
-    expect(last_response.status).to eq(200)
-    expect(last_response.body).to include("Welcome to the Sinatra Template!")
+ 
+  describe "Homepage" do
+    it 'loads the homepage' do
+      get '/'
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include("Catan")
+    end
   end
 end
