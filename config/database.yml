@@ -15,6 +15,8 @@ production:
   database: catan
   pool: 5
 
+  #any more code in the production configuration than this and herokue won't migrate
+
 
   #---------------Uncomment Below Code if Postgresql DB desired for testing and development------#
 
