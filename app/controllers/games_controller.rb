@@ -20,6 +20,29 @@ class GamesController < ApplicationController
         end 
     end
 
+    post '/games' do            #create
+        if logged_in?
+            @game = current_user.games.build(name: params[:name], number_of_players: params[:players])
+            @game.save
+            redirect "/games/#{@game.id}"
+        else
+            redirect '/login'
+        end
+    end
+
+    get '/games/:id/edit' do         
+        if logged_in?
+            @game = current_user.games.find_by_id(params[:id])
+                if @game
+                    erb :'/games/edit'
+                else
+                    redirect '/games'
+                end
+        else
+            redirect '/login'
+        end  
+    end
+
     get '/games/:id' do
         if logged_in? 
             @game = current_user.games.find_by_id(params[:id])
@@ -45,29 +68,6 @@ class GamesController < ApplicationController
         else
             redirect '/login'
         end 
-    end
-
-    post '/games' do            #create
-        if logged_in?
-            @game = current_user.games.build(name: params[:name], number_of_players: params[:players])
-            @game.save
-            redirect "/games/#{@game.id}"
-        else
-            redirect '/login'
-        end
-    end
-
-    get '/games/:id/edit' do         
-        if logged_in?
-            @game = current_user.games.find_by_id(params[:id])
-                if @game
-                    erb :'/games/edit'
-                else
-                    redirect '/games'
-                end
-        else
-            redirect '/login'
-        end  
     end
 
     patch '/games/:id' do           
