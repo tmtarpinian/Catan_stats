@@ -29,7 +29,7 @@ RSpec.describe Game, type: :model do
 	context "Associations" do
 		it "belongs to a user" do
 			expect(user1.games).to include(game)
-			expect(game.user_id).to include(user1.id)
+			expect(game.user_id).to eq(user1.id)
 		end
   end
 end
