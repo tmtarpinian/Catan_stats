@@ -27,4 +27,27 @@ describe "Turns Routes" do
 		# it "displays a form to edit at turn" do
 		# 	expect(page.body).to include(@turn.result)
 		# end
+
+	describe "updating a turn" do
+    before do
+
+      visit "/games/#{@game.id}/turns/#{@turn.id}/edit"
+
+      fill_in :result, :with => 7
+      
+
+      page.find(:css, "[type=submit]").click
+    end
+
+    # it "updates the turn" do
+    #   expect(page).to have_content("Double chocolate chip cookies")
+    #   expect(page).to have_content("chocolate chips, flour, sugar, butter, cocoa powder")
+    #   expect(page).to have_content("30 minutes")
+    # end
+
+    it "redirects to the game show page" do
+      expect(page.current_path).to eq("/games/#{@game.id}")
+    end
+
+  end
 end
