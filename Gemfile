@@ -14,6 +14,7 @@ group :test, :development do
   gem "pry"
   #comment out sqlite gem if using postgresql for test and development database
   gem 'sqlite3', '~> 1.3.6'
+  gem 'simplecov', require: false
 end
 
 
