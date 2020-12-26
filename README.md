@@ -6,6 +6,7 @@
 
 ![forks badge](https://img.shields.io/github/forks/tmtarpinian/Catan_stats)
 ![stars badge](https://img.shields.io/github/stars/tmtarpinian/Catan_stats)
+[![Coverage](https://USERNAME.github.io/REPO/badge.svg)](https://github.com/tmtarpinian/Catan_stats)
 
 
 ### Table of Contents

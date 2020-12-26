@@ -1,6 +1,10 @@
 require 'simplecov'
 SimpleCov.start
 
+require 'shields_badge'
+SimpleCov.formatter = SimpleCov::Formatter::ShieldsBadge
+
+
 ENV["SINATRA_ENV"] = "test"
 
 require_relative '../config/environment'
