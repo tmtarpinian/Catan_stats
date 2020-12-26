@@ -1,5 +1,4 @@
 require 'spec_helper'
-require_relative './support/login_helper'
 
 describe "Games Routes" do
 	let(:user_1) {User.create(name: "Dirty Harry", email: "email@email.com", password: "password")}
