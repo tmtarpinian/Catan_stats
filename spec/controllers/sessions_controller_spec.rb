@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Session Routes', type: :feature do
+describe 'Sessions Controller', type: :feature do
 	it "renders login page successfully" do
 		visit '/login'
 		expect(page.status_code).to eq(200)

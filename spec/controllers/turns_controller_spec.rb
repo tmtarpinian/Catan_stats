@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Turns Routes" do
+describe "Turns Controller" do
 	let(:user) {User.create(name: "Dirty Harry", email: "email@email.com", password: "password")}
   let(:game_name) { "Catan" }
 	let(:game_players_3) { 3 }
