@@ -17,8 +17,9 @@ RSpec.describe Game, type: :model do
       expect(game.number_of_players).to eq(3)
     end
 
-    it "has a gamedate" do 
-      expect(game.gamedate.strftime("%Y%m%d")).to eq("20201111")
+	it "has a gamedate" do
+		current_time = DateTime.now.strftime("%Y%m%d")
+      expect(game.gamedate.strftime("%Y%m%d")).to eq(current_time)
 		end
 
 		it "has a status" do 
