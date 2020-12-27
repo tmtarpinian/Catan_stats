@@ -3,15 +3,9 @@ require 'spec_helper'
 describe 'User Features' do
 	context "Signup" do
 		def user_signup
-			fill_in(:name, :with => "wilfred") #requried string
+			fill_in(:name, :with => "wilfred")
 			fill_in(:email, :with => "wilfred@wilfred.com")
 			fill_in(:password, :with => "wilfred")
-			click_button 'submit'
-		end
-
-		def user_signin
-			fill_in(:email, :with => @email)
-			fill_in(:password, :with => @password)
 			click_button 'submit'
 		end
 
