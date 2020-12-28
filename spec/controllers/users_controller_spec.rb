@@ -114,21 +114,10 @@ describe 'User Controller', type: :feature do
 		it 'delete action redirects to root route for authenticated users' do
 			visit '/signup'
 			user_signup
-			visit '/users/delete'
-			fill_in(:name, :with => "")
-			fill_in(:email, :with => "wilfred@wilfred.com")
-			click_button 'submit'
-			expect(current_path).to eq('/users/edit')
-		end
-
-		it 'delete action redirects to root route for authenticated users' do
-			visit '/signup'
-			user_signup
-			visit '/users/delete'
-			fill_in(:name, :with => "")
-			fill_in(:email, :with => "wilfred@wilfred.com")
-			click_button 'submit'
-			expect(current_path).to eq('/users/edit')
+			visit '/users/edit'
+			click_button 'Delete User'
+      expect(page.status_code).to eq(200)
+			expect(current_path).to eq('/')
 		end
 	end
 end
