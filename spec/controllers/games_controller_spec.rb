@@ -1,30 +1,63 @@
 require 'spec_helper'
 
-describe "Games Routes" do
-	let(:user_1) {User.create(name: "Dirty Harry", email: "email@email.com", password: "password")}
-  let(:game_name) { "Catan" }
-	let(:game_players_3) { 3 }
-	let(:game_players_4) { 4 }
+describe "Games Controller" do
 
-  before do
-		@game_1 = Game.create(:name => game_name, :number_of_players => game_players_3, :user_id => user_1.id)
-		@game_2 = Game.create(:name => game_name, :number_of_players => game_players_4, :user_id => user_1.id)
-  end
+	def user_signup
+		fill_in(:name, :with => "wilfred")
+		fill_in(:email, :with => "wilfred@wilfred.com")
+		fill_in(:password, :with => "wilfred")
+		click_button 'submit'
+	end
 
-	describe "Index page '/games'" do
+	# Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+	# Turn.create(game_id: Game.first.id, result: 4)
+	# Turn.create(game_id: Game.first.id, result: 7)
 
-		before do
-			visit "/games"
-		end
+ 
 
-		it 'responds with a 200 status code' do
+	describe "/games index action" do
+
+		it '/games responds with a 200 status code' do
+			visit '/signup'
+			user_signup
+			visit '/games'
 			expect(page.status_code).to eq(200)
 		end
 
-		it "displays a list of games" do
-			expect(page.body).to include(game_name)
-			expect(page.body).to include(@game_2.name)
+		it 'authenticated users can access /games' do
+			visit '/signup'
+			user_signup
+			visit '/games'
+			expect(current_path).to eq('/games')
+			expect(page).to have_content("#{User.first.name}'s Games")
 		end
+
+		it 'only authenticated users can access /games' do
+			visit '/games'
+			expect(current_path).to eq('/login')
+		end
+
+		# move to features
+		# it "displays a list of games" do
+		# 	expect(page.body).to include(game_name)
+		# 	expect(page.body).to include(@game_2.name)
+		# end
+
+		# visit '/signup'
+		# visit '/signup'
+		# user_signup
+		# Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+		# Turn.create(game_id: Game.first.id, result: 4)
+		# Turn.create(game_id: Game.first.id, result: 7)
+		# expect(User.count).to eq(1)
+		# expect(Game.count).to eq(1)
+		# expect(Turn.count).to eq(2)
+		# visit '/users/edit'
+		# click_button 'Delete User'
+  		# expect(page.status_code).to eq(200)
+		# expect(User.count).to eq(0)
+		# expect(Game.count).to eq(0)
+		# expect(Turn.count).to eq(0)
 
 		# it "contains links to each game's show page" do
 			
