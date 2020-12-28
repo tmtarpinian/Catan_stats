@@ -28,20 +28,6 @@ describe 'Sessions Controller', type: :feature do
     end
 
     context "/logout controller action" do
-        it 'successfully logs out a logged-in user' do
-            User.create(:name => "wilfred", :email => "wilfred@wilfred.com", :password => "wilfred")        
-            visit '/login'
-            fill_in(:email, :with => "wilfred@wilfred.com")
-            fill_in(:password, :with => "wilfred")
-            click_button 'submit'
-            visit '/profile'
-            
-            expect(session[:id]).to eq(1)
-            expect(current_path).to eq('/profile')
-            expect(page).to have_content("wilfred")
-            visit '/logout'
-            expect(current_path).to eq('/')
-        end
 
         it 'redirects the homepage after logout' do
             User.create(:name => "wilfred", :email => "wilfred@wilfred.com", :password => "wilfred")
@@ -67,15 +53,5 @@ describe 'Sessions Controller', type: :feature do
             visit '/profile'
             expect(current_path).to eq('/login')
         end
-    end
-end
-
-
-get '/logout' do
-    if logged_in?
-        session.clear
-        redirect '/'
-    else
-        redirect '/'
     end
 end
