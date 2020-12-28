@@ -56,9 +56,36 @@ describe "Games Controller" do
 		end
 
 		it 'only authenticated users can access an individual game' do
+			User.create(:name => "wilfred", :email => "wilfred@wilfred.com", :password => "wilfred")
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
 			visit '/games/1'
 			expect(current_path).to eq('/login')
 		end
+	end
+
+	describe "/games/ new action" do
+
+		it '/games/new responds with a 200 status code' do
+			visit '/signup'
+			user_signup
+			visit '/games/new'
+			expect(page.status_code).to eq(200)
+		end
+
+		it 'authenticated users can access new game page' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			visit '/games/new'
+			expect(current_path).to eq('/games/new')
+			expect(page).to have_content("What is the Title of Your New Game?")
+		end
+
+		it 'only authenticated users can access an individual game' do
+			visit '/games/new'
+			expect(current_path).to eq('/login')
+		end
+	end
 
 	
 
@@ -87,7 +114,7 @@ describe "Games Controller" do
 		# 	expect(all_link_hrefs).to include("/games/#{@game1.id}")
 		# 	expect(all_link_hrefs).to include("/games/#{@game2.id}")
 		# end
-	end
+	
 
 
 
@@ -98,5 +125,4 @@ describe "Games Controller" do
     # it 'deletes via a DELETE request' do
     #   expect(page.find(:css, "form input[name=_method]", :visible => false)[:value]).to match(/delete/i)
     # end
-  end
 end
