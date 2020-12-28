@@ -43,7 +43,7 @@ You can also use [the Catan Stats app here on Heroku.](https://catan-stats.herok
 ## Deploy
 ---
 
-To use Catan Stats, download a zipped file from Github (https://github.com/ferrisbueller66/Catan_stats).
+To use Catan Stats, download a zipped file from Github (https://github.com/tmtarpinian/Catan_stats).
 Please have ruby and the shotgun gem installed prior to running this application.
 
 After unzipping and saving the contents to the desired directory, run `bundle install` to install all the gems required for this program.
@@ -89,13 +89,13 @@ The close the program, logout of your account, exit your web browser, and type '
 ## Contributing
 ---
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ferrisbueller66/Catan_stats. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/tmtarpinian/Catan_stats. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## Conduct
 ---
 
-Everyone using and interacting in Catan Stat's codebases, issue trackers, chat rooms and/or mailing lists is expected to follow the [code of conduct](https://github.com/ferrisbueller66/Catan_stats/blob/master/CODE_OF_CONDUCT.md).
+Everyone using and interacting in Catan Stat's codebases, issue trackers, chat rooms and/or mailing lists is expected to follow the [code of conduct](https://github.com/tmtarpinian/Catan_stats/blob/master/CODE_OF_CONDUCT.md).
 
 ## Maintainer(s)
 ---
