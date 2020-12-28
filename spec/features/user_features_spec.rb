@@ -9,21 +9,13 @@ describe 'User Features' do
 			click_button 'submit'
 		end
 
-		it 'signup successful creates new user' do
+		it 'signup form successful creates new user' do
 			expect(User.all.length).to eq(0)
 			visit '/signup'
 			expect(current_path).to eq('/signup')
 			user_signup
 			expect(User.all.length).to eq(1)
 			expect(User.first.name).to eq("wilfred")
-		end
-
-		it 'successful signup redirects to profile' do
-			visit '/signup'
-			expect(current_path).to eq('/signup')
-			user_signup
-			expect(current_path).to eq('/profile')
-			expect(page).to have_content("wilfred")
 		end
 	end
 end
