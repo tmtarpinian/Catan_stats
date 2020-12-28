@@ -55,7 +55,12 @@ describe 'User Controller', type: :feature do
 			expect(page).to have_content("Edit Your Profile Here:")
 		end
 
-		it 'submitting edit user form redirects to /profile' do
+		it 'only authenticated users can access /users/edit' do
+			visit '/users/edit'
+			expect(current_path).to eq('/login')
+		end
+
+		it 'submitting valid edit user form redirects to /profile' do
 			visit '/signup'
 			user_signup
 			visit '/users/edit'
@@ -64,6 +69,16 @@ describe 'User Controller', type: :feature do
 			click_button 'submit'
 			expect(current_path).to eq('/profile')
 			expect(page).to have_content("wolfy")
+		end
+
+		it 'submitting invalid edit user form redirects to /users/edit' do
+			visit '/signup'
+			user_signup
+			visit '/users/edit'
+			fill_in(:name, :with => "")
+			fill_in(:email, :with => "wilfred@wilfred.com")
+			click_button 'submit'
+			expect(current_path).to eq('/users/edit')
 		end
 		
 	end
