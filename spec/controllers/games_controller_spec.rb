@@ -9,10 +9,6 @@ describe "Games Controller" do
 		click_button 'submit'
 	end
 
-	# Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-	# Turn.create(game_id: Game.first.id, result: 4)
-	# Turn.create(game_id: Game.first.id, result: 7)
-
 	describe "/games index action" do
 
 		it '/games responds with a 200 status code' do
@@ -93,23 +89,19 @@ describe "Games Controller" do
 			visit '/signup'
 			user_signup
 			visit '/games/new'
-			# select values instead of relying on the default page fill
-			# find('#organizationSelect').find(:xpath, 'option[1]').select_option
-			# select(:name, :with => "Catan")
-			# select(:players, :with => 4)
+			page.select("Catan", from: 'name')
+			page.select(4, from: 'players')
 			click_button 'submit'
 			expect(Game.first.name).to eq('Catan')
-			expect(Game.first.number_of_players).to eq(3)
+			expect(Game.first.number_of_players).to eq(4)
 		end
 
 		it 'redirects to game show page after instantiation of new game' do
 			visit '/signup'
 			user_signup
 			visit '/games/new'
-			# select values instead of relying on the default page fill
-			# find('#organizationSelect').find(:xpath, 'option[1]').select_option
-			# select(:name, :with => "Catan")
-			# select(:players, :with => 4)
+			page.select("Catan", from: 'name')
+			page.select(4, from: 'players')
 			click_button 'submit'
 			expect(current_path).to eq("/games/#{Game.first.id}")
 			expect(page).to have_content("Game: #{Game.first.name}")
@@ -135,10 +127,28 @@ describe "Games Controller" do
 			expect(page).to have_content("Change the Status of This Game")
 		end
 
-		it 'restricts new game page access to authenticated users only' do
+		it 'restricts edit game page access to authenticated users only' do
 			Game.create(user_id: 1, number_of_players: 4, name: "Catan")
 			visit '/games/1'
 			expect(current_path).to eq('/login')
+		end
+
+		it 'restricts edit game page to valid games only' do
+			visit '/signup'
+			user_signup
+			visit '/games/65/edit'
+			expect(current_path).to eq('/games')
+		end
+	
+		it 'restricts edit game page to only games of logged in user' do
+			visit '/signup'
+			user_signup
+			game_1 = Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			game_2 = Game.create(user_id: 2, number_of_players: 4, name: "Catan")
+			visit '/games/1/edit'
+			expect(current_path).to eq('/games/1/edit')
+			visit '/games/2/edit'
+			expect(current_path).to eq('/games')
 		end
 	end
 
@@ -166,7 +176,7 @@ describe "Games Controller" do
 			expect(page).to have_content("Game: #{Game.first.name}")
 		end
 	end
-	
+
 		describe "/games/:id delete action" do
 			it 'allows an authenticated user to delete a game instance' do
 				visit '/signup'
