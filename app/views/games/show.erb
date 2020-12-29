@@ -52,7 +52,7 @@ Game Status: <%=@game.status%>
 <h3>  Turn Number: <%=@counter%> Roll Result: <%=@turn.result%> <a href="/games/<%=@game.id%>/turns/<%=@turn.id%>/edit">Edit This Roll Result</a>                                                         
  <form method="POST" action="/games/<%=@game.id%>/turns/<%=@turn.id%>">                 
     <input type="hidden" name="_method" value="DELETE">
- 	  <input type="submit" value="Delete Roll" id="roll-<%=@turn.id%>">
+ 	  <input type="submit" value="Delete Roll" id="delete-roll-<%=@turn.id%>">
   </form>
 </h3>
 <%@counter +=1%>
