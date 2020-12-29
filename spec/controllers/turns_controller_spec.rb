@@ -1,53 +1,46 @@
 require 'spec_helper'
 
 describe "Turns Controller" do
-	let(:user) {User.create(name: "Dirty Harry", email: "email@email.com", password: "password")}
-  let(:game_name) { "Catan" }
-	let(:game_players_3) { 3 }
 
-  before do
-		@game = Game.create(:name => game_name, :number_of_players => game_players_3, :user_id => user.id)
-		@turn = Turn.create(:result => 5, :game_id => @game.id)
-  end
+	def user_signup
+		fill_in(:name, :with => "wilfred")
+		fill_in(:email, :with => "wilfred@wilfred.com")
+		fill_in(:password, :with => "wilfred")
+		click_button 'submit'
+	end
 
-	describe "Edit page '/games/:id/turns/:id/edit'" do
+#   before do
+# 		@game = Game.create(:name => game_name, :number_of_players => game_players_3, :user_id => user.id)
+# 		@turn = Turn.create(:result => 5, :game_id => @game.id)
+#   end
 
-		before do
-			visit "/games/:id/turns/:id/edit"
-		end
-
-		it 'responds with a 200 status code' do
-			expect(page.status_code).to eq(200)
-		end
-
-		it "displays a turn" do
-			expect(page.body).to include(@turn.result)
+	describe "/games/:id/turns create action" do
+		it 'allows an authenticated user to create a turn for a game instance' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			expect(Turn.count).to eq(0)
+			visit '/games/1'
+			page.select('5', from: 'result')
+			click_button 'submit'
+			expect(Turn.count).to eq(1)
+			expect(Turn.first.result).to eq(5)
+			expect(page.body).to include("Roll Result: #{Turn.first.result}")
 		end
 	end
-		# it "displays a form to edit at turn" do
-		# 	expect(page.body).to include(@turn.result)
-		# end
 
-	describe "updating a turn" do
-    before do
-
-      visit "/games/#{@game.id}/turns/#{@turn.id}/edit"
-
-      fill_in :result, :with => 7
-      
-
-      page.find(:css, "[type=submit]").click
-    end
-
-    # it "updates the turn" do
-    #   expect(page).to have_content("Double chocolate chip cookies")
-    #   expect(page).to have_content("chocolate chips, flour, sugar, butter, cocoa powder")
-    #   expect(page).to have_content("30 minutes")
-    # end
-
-    it "redirects to the game show page" do
-      expect(page.current_path).to eq("/games/#{@game.id}")
-    end
-
-  end
+	describe "/games/:id/turns delete action" do
+		it 'allows an authenticated user to delate a turn for a game instance' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			Turn.create(:result => 7, :game_id => Game.first.id)
+			expect(Turn.count).to eq(2)
+			visit '/games/1'
+			find('#roll-1').click
+			expect(Turn.count).to eq(1)
+			expect(Turn.first.result).to eq(7)
+		end
+	end
 end
