@@ -81,10 +81,40 @@ describe "Games Controller" do
 			expect(page).to have_content("What is the Title of Your New Game?")
 		end
 
-		it 'only authenticated users can access an individual game' do
+		it 'restricts new game page access to authenticated users only' do
 			visit '/games/new'
 			expect(current_path).to eq('/login')
 		end
+	end
+
+	describe "/games/ create action" do
+
+		it 'allows authenticated users to successfully create a new game instance' do
+			visit '/signup'
+			user_signup
+			visit '/games/new'
+			# select values instead of relying on the default page fill
+			# find('#organizationSelect').find(:xpath, 'option[1]').select_option
+			# select(:name, :with => "Catan")
+			# select(:players, :with => 4)
+			click_button 'submit'
+			expect(Game.first.name).to eq('Catan')
+			expect(Game.first.number_of_players).to eq(3)
+		end
+
+		it 'redirects to game show page after instantiation of new game' do
+			visit '/signup'
+			user_signup
+			visit '/games/new'
+			# select values instead of relying on the default page fill
+			# find('#organizationSelect').find(:xpath, 'option[1]').select_option
+			# select(:name, :with => "Catan")
+			# select(:players, :with => 4)
+			click_button 'submit'
+			expect(current_path).to eq("/games/#{Game.first.id}")
+			expect(page).to have_content("Game: #{Game.first.name}")
+		end
+
 	end
 
 	
