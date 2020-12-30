@@ -107,28 +107,29 @@ describe "Turns Controller" do
 		end
 	end
 
-	# describe "/games/:id patch action" do
+	describe "/games/:id/turns/:id patch action" do
 
-	# 	it 'allows authenticated users to successfully edit a game instance' do
-	# 		visit '/signup'
-	# 		user_signup
-	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-	# 		visit "/games/#{Game.first.id}/edit"
-	# 		page.select('Finished', from: 'status')
-	# 		click_button 'submit'
-	# 		expect(Game.first.name).to eq('Catan')
-	# 		expect(Game.first.status).to eq("Finished")
-	# 	end
+		it 'allows authenticated users to successfully edit a turn instance' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			visit "/games/#{Game.first.id}/turns/#{Turn.first.id}/edit"
+			page.select(7, from: 'result')
+			click_button 'submit'
+			expect(Turn.first.result).to eq(7)
+		end
 
-	# 	it 'redirects to game show page after updating a game' do
-	# 		visit '/signup'
-	# 		user_signup
-	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-	# 		visit "/games/#{Game.first.id}/edit"
-	# 		page.select('Finished', from: 'status')
-	# 		click_button 'submit'
-	# 		expect(current_path).to eq("/games/#{Game.first.id}")
-	# 		expect(page).to have_content("Game: #{Game.first.name}")
-	# 	end
-	
+		it 'redirects to game show page after updating a turn' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			visit "/games/#{Game.first.id}/turns/#{Turn.first.id}/edit"
+			page.select(7, from: 'result')
+			click_button 'submit'
+			expect(current_path).to eq("/games/#{Game.first.id}")
+			expect(page).to have_content("Game: #{Game.first.name}")
+		end
+	end
 end
