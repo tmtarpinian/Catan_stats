@@ -165,7 +165,7 @@ describe "Games Controller" do
 			expect(Game.first.status).to eq("Finished")
 		end
 
-		it 'redirects to game show page after instantiation of new game' do
+		it 'redirects to game show page after updating a game' do
 			visit '/signup'
 			user_signup
 			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
@@ -199,5 +199,4 @@ describe "Games Controller" do
 				expect(current_path).to eq('/games')
 			end
 		end
-	end
 end

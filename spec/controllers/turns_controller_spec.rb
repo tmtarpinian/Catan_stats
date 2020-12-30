@@ -55,4 +55,80 @@ describe "Turns Controller" do
 			expect(current_path).to eq("/games/#{Game.first.id}")
 		end
 	end
+
+	describe "/games/:id/turns/:id/edit edit action" do
+
+		it '/games/:id/turns/:id/edit responds with a 200 status code' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			visit "/games/#{Game.first.id}/turns/#{Turn.first.id}/edit"
+			expect(page.status_code).to eq(200)
+		end
+
+		it 'authenticated users can access edit turn page' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			visit "/games/#{Game.first.id}/turns/#{Turn.first.id}/edit"
+			expect(current_path).to eq('/games/1/turns/1/edit')
+			expect(page).to have_content("Edit Your Turn Result Here:")
+		end
+
+		it 'restricts edit turn page access to authenticated users only' do
+			Game.create(user_id: 1, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			visit '/games/1/turns/1/edit'
+			expect(current_path).to eq('/login')
+		end
+
+		it 'restricts edit turn page to valid turns only' do
+			visit '/signup'
+			user_signup
+			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			visit '/games/1'
+			visit '/games/1/turns/34/edit'
+			expect(current_path).to eq('/games/1')
+		end
+	
+		it 'restricts edit turn page to only games of logged in user' do
+			visit '/signup'
+			user_signup
+			game_1 = Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+			game_2 = Game.create(user_id: 2, number_of_players: 4, name: "Catan")
+			Turn.create(:result => 5, :game_id => Game.first.id)
+			Turn.create(:result => 5, :game_id => Game.last.id)
+			visit '/games/1/turns/1/edit'
+			expect(current_path).to eq('/games/1/turns/1/edit')
+			visit '/games/2/turns/2/edit'
+			expect(current_path).to eq('/games')
+		end
+	end
+
+	# describe "/games/:id patch action" do
+
+	# 	it 'allows authenticated users to successfully edit a game instance' do
+	# 		visit '/signup'
+	# 		user_signup
+	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+	# 		visit "/games/#{Game.first.id}/edit"
+	# 		page.select('Finished', from: 'status')
+	# 		click_button 'submit'
+	# 		expect(Game.first.name).to eq('Catan')
+	# 		expect(Game.first.status).to eq("Finished")
+	# 	end
+
+	# 	it 'redirects to game show page after updating a game' do
+	# 		visit '/signup'
+	# 		user_signup
+	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+	# 		visit "/games/#{Game.first.id}/edit"
+	# 		page.select('Finished', from: 'status')
+	# 		click_button 'submit'
+	# 		expect(current_path).to eq("/games/#{Game.first.id}")
+	# 		expect(page).to have_content("Game: #{Game.first.name}")
+	# 	end
+	
 end
