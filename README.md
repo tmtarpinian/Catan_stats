@@ -16,6 +16,7 @@
 - [Deploy the App](#Deploy)
 - [Resources](#Resources)
     - [Application Controller](#Application)
+    - [Sessions Controller](#Sessions)
     - [User Controller](#Users)
     - [Game Controller](#Games)
     - [Turn Controller](#Turns)
@@ -59,7 +60,14 @@ The close the program, logout of your account, exit your web browser, and type '
 ### Application
 | route | method | description | Docs |
 |---|---|---|---|
-|  '/' | GET | renders welcome page |  [code](./app/controllers/application_controller.rb#L12-L14) |
+|  '/' | GET | renders login page |  [code](./app/controllers/application_controller.rb#L12-L14) |
+---
+
+### Sessions
+| route | method | description | Docs |
+|---|---|---|---|
+|  '/login' | GET, POST | renders login page |  [code](./app/controllers/sessions_controller.rb#L2-L13) |
+|  '/logout' | GET | deletes session |  [code](./app/controllers/sessions_controller.rb#L15-L22) |
 ---
 
 ### Users
