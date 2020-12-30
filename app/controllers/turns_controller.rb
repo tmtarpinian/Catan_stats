@@ -3,9 +3,13 @@ class TurnsController < ApplicationController
     post '/games/:id/turns' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
-            @turn = @game.turns.build(result: params[:result])   
-            @turn.save                            
-            redirect "/games/#{@game.id}"
+            if game
+                @turn = @game.turns.build(result: params[:result])   
+                @turn.save                            
+                redirect "/games/#{@game.id}"
+            else
+                redirect '/games'
+            end
         else
             redirect '/login'
         end

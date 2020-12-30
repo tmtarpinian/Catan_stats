@@ -9,11 +9,6 @@ describe "Turns Controller" do
 		click_button 'submit'
 	end
 
-#   before do
-# 		@game = Game.create(:name => game_name, :number_of_players => game_players_3, :user_id => user.id)
-# 		@turn = Turn.create(:result => 5, :game_id => @game.id)
-#   end
-
 	describe "/games/:id/turns create action" do
 		it 'allows an authenticated user to create a turn for a game instance' do
 			visit '/signup'
