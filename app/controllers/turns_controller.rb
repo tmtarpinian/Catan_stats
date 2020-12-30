@@ -14,8 +14,16 @@ class TurnsController < ApplicationController
     get '/games/:game_id/turns/:id/edit' do
         if logged_in?
             @game = current_user.games.find_by_id(params[:game_id])
-            @turn = @game.turns.find_by_id(params[:id])
-            erb :'turns/edit'
+            if @game
+                @turn = @game.turns.find_by_id(params[:id])
+                if @turn
+                    erb :'turns/edit'
+                else
+                    redirect "/games/#{@game.id}"
+                end
+            else
+                redirect '/games'
+            end
         else
             redirect '/login'
         end
