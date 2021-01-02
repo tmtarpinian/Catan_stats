@@ -9,10 +9,10 @@ gem 'shotgun'
 gem 'sinatra'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'thin'
+gem 'chartkick'
 
 group :test, :development do
   gem "pry"
-  #comment out sqlite gem if using postgresql for test and development database
   gem 'sqlite3', '~> 1.3.6'
 end
 
@@ -27,4 +27,3 @@ group :test do
   gem 'simplecov-shields-badge', require: false
 
 end
-

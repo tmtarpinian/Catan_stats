@@ -13,6 +13,8 @@ Game Status: <%=@game.status%>
     <li><b>Total Turns Played This Game:</b> <%= @length %></li>
     <li><b>Most Common Roll This Game:</b> <%= @top_roll%></li>
     <li><b>Occuring:</b> <%= @times %> out of <%=@length%> turns (<%=@percentage%>%)</li>
+  <br>
+  <%= column_chart @game.turns.group(:result).count %>
   </ul>
 </div>
 <br>
