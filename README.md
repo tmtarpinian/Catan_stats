@@ -4,6 +4,8 @@
 
 > A Place to track your in-game stats and historical data for your games of Catan
 
+![Build Status](https://github.com/tmtarpinian/catan_stats/workflows/master/badge.svg)
+![Build Status](https://github.com/tmtarpinian/catan_stats/workflows/development/badge.svg)
 ![forks badge](https://img.shields.io/github/forks/tmtarpinian/Catan_stats)
 ![stars badge](https://img.shields.io/github/stars/tmtarpinian/Catan_stats)
 [![Coverage](https://github.com/tmtarpinian/Catan_stats/blob/master/badge.svg)](https://github.com/tmtarpinian/Catan_stats)
@@ -39,7 +41,9 @@ You can also use [the Catan Stats app here on Heroku.](https://catan-stats.herok
 ### Technologies
 - Ruby
 - Sinatra
+- Rspec/Capybara
 - Postgresql
+- Github Actions
 
 ## Deploy
 ---
@@ -113,7 +117,7 @@ Everyone using and interacting in Catan Stat's codebases, issue trackers, chat r
 |[@tmtarpinian](https://github.com/tmtarpinian) |
 
 ## License
-Copyright © 2020 Trevor Tarpinian
+Copyright © 2020-21 Trevor Tarpinian
 
 The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
