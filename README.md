@@ -1,14 +1,10 @@
-# Catan Stats
-
 ![Project Image](./public/images/catan.jpg)
-
+# Catan Stats
 > A Place to track your in-game stats and historical data for your games of Catan
 
 ![Build Status](https://github.com/tmtarpinian/catan_stats/workflows/master/badge.svg)
 ![Build Status](https://github.com/tmtarpinian/catan_stats/workflows/development/badge.svg)
-![forks badge](https://img.shields.io/github/forks/tmtarpinian/Catan_stats)
-![stars badge](https://img.shields.io/github/stars/tmtarpinian/Catan_stats)
-[![Coverage](https://github.com/tmtarpinian/Catan_stats/blob/master/badge.svg)](https://github.com/tmtarpinian/Catan_stats)
+[![Coverage](badge.svg)](https://github.com/tmtarpinian/Catan_stats)
 
 
 ### Table of Contents
