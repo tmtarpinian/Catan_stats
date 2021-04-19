@@ -10,6 +10,7 @@ gem 'sinatra'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'thin'
 gem 'chartkick'
+gem 'slim'
 
 group :test, :development do
   gem "pry"
