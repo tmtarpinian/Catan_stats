@@ -10,7 +10,7 @@ class UsersController < ApplicationController
                 session[:user_id] = @user.id
                 redirect "/profile"
             else
-                erb :'users/signup'
+                slim :'users/signup'
             end                                            
     end
 
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
             
-            erb :"users/profile"
+            slim :"users/profile"
         else
            redirect '/login'                               
         end 
