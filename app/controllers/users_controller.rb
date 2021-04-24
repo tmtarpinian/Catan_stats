@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     get '/users/edit' do           
         if logged_in?
-            erb :"users/edit"
+            slim :"users/edit"
         else
             redirect '/login'
         end
