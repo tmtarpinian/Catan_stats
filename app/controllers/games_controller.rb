@@ -6,7 +6,7 @@ class GamesController < ApplicationController
             u = titles.uniq
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
-            erb :"/games/index"
+            slim :"/games/index"
         else
             redirect '/login'
         end 

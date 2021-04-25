@@ -1,0 +1,35 @@
+h1 #{current_user.name}'s Games
+br
+div class="sidebar"
+  h2 Game Stats
+  ul
+    li
+      b Number of Games Created: 
+      | #{current_user.games.count}
+    li
+      b Game Most Played: 
+      | #{@freq_game} (Played #{@frequency}x)
+    li
+      b Most Common Roll This Game: 
+      | Coming Soon!
+    li
+      b Average Number of Turns for This Game: 
+      | Coming Soon!
+h2 Game List
+-current_user.games.each do |game|
+  h3
+    a href="/games/#{game.id}" #{game.name}
+  h4 Start Date: #{game.gamedate.strftime("%m-%d-%Y")} #{game.gamedate.strftime(" at %I:%M%p")} (#{game.status}
+
+br
+br
+h2
+  a href="/games/new" Start a New Game Here
+br
+br
+h2
+  a href="/profile" Back to your Dashboard                
+h4
+  a href="/logout" Log out of Your Profile
+ 
+
