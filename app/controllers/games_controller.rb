@@ -34,7 +34,7 @@ class GamesController < ApplicationController
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
                 if @game
-                    erb :'/games/edit'
+                    slim :'/games/edit'
                 else
                     redirect '/games'
                 end
