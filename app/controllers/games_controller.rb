@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     
     get '/games/new' do
         if logged_in? 
-            erb :"/games/new"
+            slim :"/games/new"
         else
             redirect '/login'
         end 

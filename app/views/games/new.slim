@@ -1,0 +1,25 @@
+h1 What is the Title of Your New Game?
+
+form method="POST" action='/games'
+  h2 Game Title:
+  br
+  select name="name"
+      option Catan 
+      option Monopoly 
+  br
+  br
+  h2 Number of Players:
+  br
+    select name="players"
+      option 3 
+      option 4 
+      option 5 
+      option 6 
+  br
+  br
+  input type="submit" value="submit" id="submit"
+br
+h2 Change Your Mind?
+br
+h3
+  a href="/games" Back to Your Games
