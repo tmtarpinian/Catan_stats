@@ -19,7 +19,7 @@ h2 Game List
 -current_user.games.each do |game|
   h3
     a href="/games/#{game.id}" #{game.name}
-  h4 Start Date: #{game.gamedate.strftime("%m-%d-%Y")} #{game.gamedate.strftime(" at %I:%M%p")} (#{game.status}
+  h4 Start Date: #{game.gamedate.strftime("%m-%d-%Y")} #{game.gamedate.strftime(" at %I:%M%p")} (#{game.status})
 
 br
 br

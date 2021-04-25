@@ -61,7 +61,7 @@ class GamesController < ApplicationController
                         @times = 0
                         @percentage = 0
                      end
-                erb :"/games/show"
+                slim :"/games/show"
             else
                 redirect '/profile'                                   
             end

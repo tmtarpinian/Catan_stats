@@ -1,0 +1,73 @@
+h1 Game: #{@game.name}
+br
+h2 Start Date: #{@game.gamedate.strftime("%m-%d-%Y")}#{@game.gamedate.strftime(" at %I:%M%p")}
+br
+Game Status: #{@game.status}
+br
+a href="/games/#{@game.id}/edit" Edit This Game's Status                     
+</h2>
+br
+div class="sidebar"
+  h2 Game Stats
+  ul
+    li
+      b Total Turns Played This Game: 
+      | #{@length}
+    li
+      b Most Common Roll This Game: 
+      | #{@top_roll}
+    li
+      b Occuring: 
+      | #{@times} out of #{@length} turns (#{@percentage})
+br
+    = column_chart @game.turns.group(:result).count
+br
+h2 
+  a href="/games" Back to Your Games
+br
+br
+br
+h2 Enter Your Next Turn Result Here:
+form method="POST" action='/games/#{@game.id}/turns'
+  label Roll/Spin Result:
+  br
+  select name="result"
+    option 2 
+    option 3 
+    option 4 
+    option 5 
+    option 6 
+    option 7 
+    option 8 
+    option 9 
+    option 10 
+    option 11 
+    option 12 
+  br
+  br
+  input type="submit" value="submit" id="submit"
+br
+br
+
+
+
+-@counter = 1
+-@game.turns.each do |turn|                                      
+  -@turn = turn
+  h3  Turn Number: #{@counter} Roll Result: #{@turn.result}
+  a href="/games/#{@game.id}/turns/#{@turn.id}/edit" Edit This Roll Result                                                      
+  form method="POST" action="/games/#{@game.id}/turns/#{@turn.id}"             
+      input type="hidden" name="_method" value="DELETE"
+      input type="submit" value="Delete Roll" id="delete-roll-#{@turn.id}"
+  -@counter +=1
+br
+h2 Delete This Game:
+form method="POST" action="/games/${@game.id}"      
+  input type="hidden" name="_method" value="DELETE"
+ 	input type="submit" value="Delete Game"
+br
+h2
+  a href="/games" Back to Your Games
+br
+h4
+  a href="/logout" Log out of Your Profile
