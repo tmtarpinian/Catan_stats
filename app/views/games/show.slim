@@ -62,7 +62,7 @@ br
   -@counter +=1
 br
 h2 Delete This Game:
-form method="POST" action="/games/${@game.id}"      
+form method="POST" action='/games/#{@game.id}'
   input type="hidden" name="_method" value="DELETE"
  	input type="submit" value="Delete Game"
 br
