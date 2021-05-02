@@ -31,3 +31,12 @@ jobs:
       run: rake db:migrate SINATRA_ENV=test
     - name: Run tests
       run: bundle exec rspec
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Add remote"
+      run: |
+        git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.catan-stats }}.git
+    - name: "Push to heroku"
+      run: |
+        git push heroku HEAD:master
