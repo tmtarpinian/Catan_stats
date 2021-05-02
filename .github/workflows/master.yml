@@ -31,3 +31,28 @@ jobs:
       run: rake db:migrate SINATRA_ENV=test
     - name: Run tests
       run: bundle exec rspec
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "Create .netrc for Heroku Auth"
+      shell: bash
+      run: |
+        `cat ≶~/.netrc <<EOF
+        machine api.heroku.com
+            login $EMAIL
+            password $HEROKU_AUTH_TOKEN
+        machine git.heroku.com
+            login $EMAIL
+            password $HEROKU_AUTH_TOKEN
+        EOF`
+      env:
+        EMAIL: tmtarpinian@gmail.com
+        HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+    - name: "Add remote"
+    shell: "bash"
+    run: |
+      heroku git:remote --app catan-stats
+    - name: "Push to heroku"
+      shell: "bash"
+      run: |
+        git push heroku HEAD:master
