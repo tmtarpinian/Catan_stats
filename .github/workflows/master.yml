@@ -34,8 +34,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    
-        HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
     - name: "Add remote"
       run: |
         git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.catan-stats }}.git
