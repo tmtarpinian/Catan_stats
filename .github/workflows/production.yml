@@ -9,7 +9,7 @@ name: master
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ production ]
 
 jobs:
   test:
