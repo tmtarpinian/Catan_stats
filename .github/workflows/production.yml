@@ -5,7 +5,7 @@
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
-name: master
+name: production
 
 on:
   pull_request:
@@ -34,9 +34,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: "Add remote"
+    - name: "Create .netrc for Heroku Auth"
+      shell: bash
       run: |
-        git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.catan-stats }}.git
+        `cat >~/.netrc <<EOF
+        machine api.heroku.com
+            login $EMAIL
+            password $HEROKU_AUTH_TOKEN
+        machine git.heroku.com
+            login $EMAIL
+            password $HEROKU_AUTH_TOKEN
+        EOF`
+      env:
+        EMAIL: ${{secrets.EMAIL}}
+        HEROKU_AUTH_TOKEN: ${{ secrets.HEROKU_AUTH_TOKEN }}
+    - name: "Add remote"
+      shell: "bash"
+      run: |
+        heroku git:remote --app aleem-urls
     - name: "Push to heroku"
+      shell: "bash"
       run: |
         git push heroku HEAD:master
