@@ -1,11 +1,15 @@
+head
+    link rel="stylesheet" href="~/public/stylesheets/main.css"
+body
 h1 Please Log In Below:
-form action="/login" method="post"
-    label Email
-    input type="text" name="email" placeholder="Email"
-    label Password
-    input type="password" name="password" placeholder="Password"
-    input type="submit" value="submit"
+div class="form__group"
+    form action="/login" method="post"
+        input type="text" class="form__field" name="email" id="email" placeholder="Email" required=""
+        label for="name" class="form__label" Email
+        input type="text" class="form__field" name="password" id="password" placeholder="Password" required=""
+        label for="name" class="form__label" Password
+        input type="submit" value="submit"
 br
 br
 h3
-a href="/" Back to CatanStats
+    a href="/" Back to CatanStats
