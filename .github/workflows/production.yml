@@ -51,7 +51,7 @@ jobs:
     - name: "Add remote"
       shell: "bash"
       run: |
-        heroku git:remote --app aleem-urls
+        heroku git:remote --app catan-stats
     - name: "Push to heroku"
       shell: "bash"
       run: |

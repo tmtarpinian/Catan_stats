@@ -33,7 +33,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.order = 'default'
+  config.order = :random
+  Kernel.srand config.seed
 end
 
 def app
