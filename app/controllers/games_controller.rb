@@ -6,7 +6,7 @@ class GamesController < ApplicationController
             u = titles.uniq
             @freq_game = u.max_by {|i| titles.count(i)}     #returns most frequently occuring title
             @frequency = titles.count{|x| x == @freq_game}
-            slim :"/games/index"
+            erb :"/games/index"
         else
             redirect '/login'
         end 
@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     
     get '/games/new' do
         if logged_in? 
-            slim :"/games/new"
+            erb :"/games/new"
         else
             redirect '/login'
         end 
@@ -34,7 +34,7 @@ class GamesController < ApplicationController
         if logged_in?
             @game = current_user.games.find_by_id(params[:id])
                 if @game
-                    slim :'/games/edit'
+                    erb :'/games/edit'
                 else
                     redirect '/games'
                 end
@@ -61,7 +61,7 @@ class GamesController < ApplicationController
                         @times = 0
                         @percentage = 0
                      end
-                slim :"/games/show"
+                erb :"/games/show"
             else
                 redirect '/profile'                                   
             end

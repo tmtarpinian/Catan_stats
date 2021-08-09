@@ -1,0 +1,24 @@
+<h1><%=current_user.name%>'s Games</h1>
+<br>
+ <div class="sidebar">
+      <h2>Game Stats</h2>
+      <ul>
+        <li><b>Number of Games Created: </b><%=current_user.games.count%></li>
+        <li><b>Game Most Played: </b><%=@freq_game%> (Played <%=@frequency%>x)</li>
+        <li><b>Most Common Roll This Game:</b> Coming Soon!</li>
+        <li><b>Average Number of Turns for This Game:</b> Coming Soon!</li>
+      </ul>
+    </div>
+<br>
+<h2>Game List</h2>
+<%current_user.games.each do |game|%>
+<h3><a href="/games/<%=game.id%>"><%=game.name%></a></h3>
+<h4>Start Date: <%=game.gamedate.strftime("%m-%d-%Y")%><%=game.gamedate.strftime(" at %I:%M%p")%> (<%=game.status%>)</h4>
+<%end%>
+<br>
+<br>
+<h2><a href="/games/new">Start a New Game Here</a></h2>
+<br>
+<br>
+<h2><a href="/profile">Back to your Dashboard</a></h2>                 
+<h4><a href="/logout">Log out of Your Profile</a></h4>

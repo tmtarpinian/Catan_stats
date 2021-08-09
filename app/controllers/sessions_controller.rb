@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     get '/login' do
-        slim :'sessions/login'
+        erb :'sessions/login'
     end
 
     post '/login' do
