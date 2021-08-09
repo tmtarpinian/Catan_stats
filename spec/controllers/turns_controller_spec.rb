@@ -20,36 +20,36 @@ describe "Turns Controller" do
 			click_button 'submit'
 			expect(Turn.count).to eq(1)
 			expect(Turn.first.result).to eq(5)
-			expect(page.body).to include("Roll Result: #{Turn.first.result}")
+			#expect(page.body).to include("Roll Result: #{Turn.first.result}")		<--- deleted feature to reformat styling
 		end
 	end
 
-	describe "/games/:id/turns delete action" do
-		it 'allows an authenticated user to delate a turn for a game instance' do
-			visit '/signup'
-			user_signup
-			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-			Turn.create(:result => 5, :game_id => Game.first.id)
-			Turn.create(:result => 7, :game_id => Game.first.id)
-			expect(Turn.count).to eq(2)
-			visit '/games/1'
-			find('#delete-roll-1').click
-			expect(Turn.count).to eq(1)
-			expect(Turn.first.result).to eq(7)
-		end
+	# describe "/games/:id/turns delete action" do									<--- deleted feature to reformat styling
+	# 	it 'allows an authenticated user to delate a turn for a game instance' do
+	# 		visit '/signup'
+	# 		user_signup
+	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+	# 		Turn.create(:result => 5, :game_id => Game.first.id)
+	# 		Turn.create(:result => 7, :game_id => Game.first.id)
+	# 		expect(Turn.count).to eq(2)
+	# 		visit '/games/1'
+	# 		find('#delete-roll-1').click
+	# 		expect(Turn.count).to eq(1)
+	# 		expect(Turn.first.result).to eq(7)
+	# 	end
 
-		it 'redirects to game show page after delating a turn for a game instance' do
-			visit '/signup'
-			user_signup
-			Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-			Turn.create(:result => 5, :game_id => Game.first.id)
-			Turn.create(:result => 7, :game_id => Game.first.id)
-			expect(Turn.count).to eq(2)
-			visit '/games/1'
-			find('#delete-roll-1').click
-			expect(current_path).to eq("/games/#{Game.first.id}")
-		end
-	end
+	# 	it 'redirects to game show page after delating a turn for a game instance' do
+	# 		visit '/signup'
+	# 		user_signup
+	# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+	# 		Turn.create(:result => 5, :game_id => Game.first.id)
+	# 		Turn.create(:result => 7, :game_id => Game.first.id)
+	# 		expect(Turn.count).to eq(2)
+	# 		visit '/games/1'
+	# 		find('#delete-roll-1').click
+	# 		expect(current_path).to eq("/games/#{Game.first.id}")
+	# 	end
+	# end
 
 	describe "/games/:id/turns/:id/edit edit action" do
 

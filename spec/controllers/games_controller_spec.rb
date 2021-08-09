@@ -177,26 +177,26 @@ describe "Games Controller" do
 		end
 	end
 
-		describe "/games/:id delete action" do
-			it 'allows an authenticated user to delete a game instance' do
-				visit '/signup'
-				user_signup
-				Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-				expect(Game.count).to eq(1)
-				visit "/games/#{Game.first.id}"
-				click_button 'Delete Game'
-				expect(page.status_code).to eq(200)
-				expect(Game.count).to eq(0)
-			end
+		# describe "/games/:id delete action" do
+		# 	it 'allows an authenticated user to delete a game instance' do
+		# 		visit '/signup'
+		# 		user_signup
+		# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+		# 		expect(Game.count).to eq(1)
+		# 		visit "/games/#{Game.first.id}"
+		# 		click_button 'Delete Game'
+		# 		expect(page.status_code).to eq(200)
+		# 		expect(Game.count).to eq(0)
+		# 	end
 	
-			it 'delete action redirects to root route for authenticated users' do
-				visit '/signup'
-				user_signup
-				Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
-				expect(Game.count).to eq(1)
-				visit "/games/#{Game.first.id}"
-				click_button 'Delete Game'
-				expect(current_path).to eq('/games')
-			end
-		end
+		# 	it 'delete action redirects to root route for authenticated users' do
+		# 		visit '/signup'
+		# 		user_signup
+		# 		Game.create(user_id: User.first.id, number_of_players: 4, name: "Catan")
+		# 		expect(Game.count).to eq(1)
+		# 		visit "/games/#{Game.first.id}"
+		# 		click_button 'Delete Game'
+		# 		expect(current_path).to eq('/games')
+		# 	end
+		# end
 end
