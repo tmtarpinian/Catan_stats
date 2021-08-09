@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@21351ecc0a7c196081abca5dc55b08f085efe09a
       with:
@@ -28,3 +29,9 @@ jobs:
       run: rake db:migrate SINATRA_ENV=test
     - name: Run tests
       run: bundle exec rspec
+    - name: Katalon Studio
+      uses: katalon-studio/katalon-studio-github-action@v2.2
+      with:
+          version: '7.5.5'
+          projectPath: '${{ GITHUB_WORKSPACE }}'
+          args: '-noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Catan" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
