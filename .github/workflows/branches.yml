@@ -34,4 +34,4 @@ jobs:
       with:
           version: '7.5.5'
           projectPath: '${{ github.workspace }}'
-          args: '-noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Catan" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
+          args: '-noSplash -retry=0 -executionProfile="default" -runMode=console -browserType="Chrome (headless)" -testSuiteCollectionPath="Test Suites/Catan" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
