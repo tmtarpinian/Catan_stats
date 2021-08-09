@@ -23,15 +23,15 @@ jobs:
       uses: ruby/setup-ruby@21351ecc0a7c196081abca5dc55b08f085efe09a
       with:
         ruby-version: 2.6
-    - name: Install dependencies
+    - name: Install Sinatra Dependencies
       run: bundle install
     - name: Migrate Test Database
       run: rake db:migrate SINATRA_ENV=test
-    - name: Run tests
+    - name: Run RSpec Unit Tests
       run: bundle exec rspec
-    - name: Katalon Studio
+    - name: Run User Acceptance Tests with Katalon Studio
       uses: katalon-studio/katalon-studio-github-action@v2.2
       with:
           version: '7.5.5'
           projectPath: '${{ github.workspace }}'
-          args: '-noSplash -retry=0 -browserType=Chrome -statusDelay=15 -testSuitePath="Test Suites/TS_RegressionTest" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
+          args: '-noSplash -retry=0 -testSuitePath="Test Suites/Catan" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
