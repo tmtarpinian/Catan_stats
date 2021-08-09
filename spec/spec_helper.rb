@@ -23,6 +23,7 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.include Rack::Test::Methods
   config.include Capybara::DSL
+  #config.include LoginHelper, :type => :feature
   DatabaseCleaner.strategy = :truncation
 
   config.before do
@@ -33,7 +34,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.order = :random
+  #config.order = :random
   Kernel.srand config.seed
 end
 

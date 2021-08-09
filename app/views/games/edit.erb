@@ -1,0 +1,19 @@
+ <form method="POST" action='/games/<%=@game.id%>'>
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <!--<label>Game Title:</label> <br>
+    <select name="title">
+        <option>Catan</option>
+        <option>Monopoly</option>
+        <option>Shoots and Ladders</option>
+        <option>Mouse Trap</option>
+    </select>
+    <br><br>  -->
+
+    <h2>Change the Status of This Game</h2>
+    <select name="status">
+        <option>In Progress</option>
+        <option>Finished</option>
+    </select>
+    <br><br>
+    <input type="submit" value="submit" id="Submit">
+  </form>
