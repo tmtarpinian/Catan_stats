@@ -46,4 +46,3 @@
  end
 
 require_all 'app'
-
