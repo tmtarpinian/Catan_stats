@@ -33,5 +33,5 @@ jobs:
       uses: katalon-studio/katalon-studio-github-action@v2.2
       with:
           version: '7.5.5'
-          projectPath: '${{ GITHUB_WORKSPACE }}'
+          projectPath: '${{ github.workspace }}'
           args: '-noSplash -retry=0 -testSuiteCollectionPath="Test Suites/Catan" -apiKey= ${{ secrets.KATALON_API }} --config -webui.autoUpdateDrivers=true'
