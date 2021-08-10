@@ -34,7 +34,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  #config.order = :random
+  #config.order = :random                   <--- deleted feature to reformat styling
   Kernel.srand config.seed
 end
 

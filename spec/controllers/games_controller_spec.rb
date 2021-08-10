@@ -177,7 +177,7 @@ describe "Games Controller" do
 		end
 	end
 
-		# describe "/games/:id delete action" do
+		# describe "/games/:id delete action" do								<--- deleted feature to reformat styling
 		# 	it 'allows an authenticated user to delete a game instance' do
 		# 		visit '/signup'
 		# 		user_signup
